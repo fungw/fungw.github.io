@@ -89,6 +89,15 @@ nav ul li a:visited {
     border: 1px solid #000;
 }
 
+a:hover {
+	color: black;
+	text-decoration: none;
+}
+
+.external_sites:hover {
+	filter: invert(100%);
+}
+
 .title-image {
 	text-align: center;
 	height: 50%;

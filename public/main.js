@@ -2,7 +2,6 @@ $(document).ready(function() {
 
 	$.getJSON("./images.json", function(data) {
 		var images = data.images;
-		console.log(images.length);
 		for (i = 0; i < images.length; i++) {
 			var id = images[i].id;
 			var filename = images[i].filename;
