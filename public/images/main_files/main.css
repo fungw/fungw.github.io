@@ -1,0 +1,48 @@
+.title-heading {
+	font-family: 'Anton', sans-serif;
+	font-size: 250%;
+	height: 90%;
+}
+
+.sidebar {
+	left: 10px !important;
+}
+
+.entry {
+	height: 90%;
+}
+
+.details {
+	font-family: 'Sanchez', cursive;
+	font-size: 200%;
+	font-weight: 600;
+	top: 40%;
+	text-align: center;
+}
+
+.button {
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    border: 1px solid #000;
+}
+
+.title-image {
+	text-align: center;
+	height: 100%;
+}
+
+.entry-content {
+	background-color: #FAFAFA;
+	border-left: 1px solid #E0E0E0;
+	height: 100%;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	background: white;
+}
