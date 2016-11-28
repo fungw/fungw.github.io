@@ -133,6 +133,10 @@ a:hover {
     margin-left: 15%;
 }
 
+#personal_name {
+	margin-bottom: 1%;
+}
+
 nav {
 	line-height: 20%;
 }
