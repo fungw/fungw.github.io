@@ -37,4 +37,22 @@ $(document).ready(function() {
 			}, 1000);
 		});
 	});
+
+	$(function(){
+		$("#personal_name").typed({
+			strings: ["Wesley Fung."],
+			typeSpeed: 0,
+			showCursor: false
+		});
+
+		$("#personal_details").typed({
+			strings: ["Computer Scientist", "Web Developer", "Dublin"],
+			typeSpeed: 25,
+			backSpeed: 0,
+			startDelay: 1000,
+			loop: true,
+			showCursor: false
+		});
+	})
+
 });

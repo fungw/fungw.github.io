@@ -39,7 +39,6 @@
 	font-family: 'Sanchez', cursive;
 	font-size: 200%;
 	font-weight: 600;
-	top: 40%;
 	text-align: center;
 }
 
@@ -98,6 +97,20 @@ a:hover {
 	filter: invert(100%);
 }
 
+.external_sites:active {
+	filter: invert(0%);
+}
+
+::-moz-selection { /* Code for Firefox */
+    color: red;
+    background: yellow;
+}
+
+::selection {
+    color: white;
+    background: black;
+}
+
 .title-image {
 	text-align: center;
 	height: 50%;
@@ -106,6 +119,18 @@ a:hover {
 
 .centered {
 	text-align: center;
+}
+
+#external_links {
+	position: absolute;
+	margin-top: 33%;
+    margin-left: 15%;
+}
+
+#typed {
+	position: absolute;
+    margin-top: 25%;
+    margin-left: 15%;
 }
 
 nav {
@@ -126,3 +151,26 @@ body {
 	background: white;
 	position: relative;
 }
+
+/* Typed.js cursor blinker */
+/*.typed-cursor{
+    opacity: 1;
+    -webkit-animation: blink 0.7s infinite;
+    -moz-animation: blink 0.7s infinite;
+    animation: blink 0.7s infinite;
+}
+@keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-webkit-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-moz-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}*/
