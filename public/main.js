@@ -55,4 +55,9 @@ $(document).ready(function() {
 		});
 	})
 
+	$(window).scroll(function(){
+      $("#external_links").css("opacity", 1 - $(window).scrollTop() / ($('#external_links').height() / 2));
+      $("#typed").css("opacity", 1 - $(window).scrollTop() / ($('#typed').height() / 2));
+      $("#initial-sidebar").css("opacity", 1 - $(window).scrollTop() / ($('#initial-sidebar').height() / 2));
+  });
 });
