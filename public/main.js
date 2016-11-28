@@ -11,16 +11,16 @@ $(document).ready(function() {
 			var width = images[i].width;
 			var google_maps = images[i].google_maps;
 
-			$('<div class="row entry" id="'+id+'">'+
-					'<div class="col-xs-3">'+
-						'<div class="col-xs-12 title-heading sidebar">'+
+			$('<div class="row entry_posts" id="'+id+'">'+
+					'<div class="col-lg-3">'+
+						'<div class="col-lg-12 title-heading sidebar">'+
 							''+name+''+
 						'</div>'+ 
-						'<div class="col-xs-6 title-smallText sidebar">'+
+						'<div class="col-lg-6 title-smallText sidebar">'+
 							''+time+''+
 						'</div>'+
 					'</div>'+
-					'<div class="col-xs-9 entry-content centered">'+
+					'<div class="col-xs-12 col-lg-9 entry-content centered">'+
 						'<a href='+google_maps+' target="_blank">'+
 							'<img src="./images/'+filename+'" class="entry-image-portrait" height="'+height+'" width="'+width+'">'+
 						'</a>'+
@@ -59,5 +59,12 @@ $(document).ready(function() {
       $("#external_links").css("opacity", 1 - $(window).scrollTop() / ($('#external_links').height() / 2));
       $("#typed").css("opacity", 1 - $(window).scrollTop() / ($('#typed').height() / 2));
       $("#initial-sidebar").css("opacity", 1 - $(window).scrollTop() / ($('#initial-sidebar').height() / 2));
+
+      if ($(window).scrollTop() > $(window).height()) {
+      	$("#typed_links").css("display", "none");
+      	console.log("Hidden");
+      } else {
+      	$("#typed_links").css("display", "initial");
+      }
   });
 });
