@@ -1,7 +1,5 @@
 $(document).ready(function() {
 
-	fluidity();
-
 	$.getJSON("./images.json", function(data) {
 		var images = data.images;
 		for (i = 0; i < images.length; i++) {
@@ -69,13 +67,16 @@ $(document).ready(function() {
 
 	function fluidity() {
 		if ($(window).width() < 1000) {
-			$("#typed").css("display", "none");
-			$(".entry_posts").css("border-top", "1px, solid, black");
+			$("#typed_links").css("display", "none");
 			$(".entry-content").css("height", "0%");
+			$(".entry-content").css("background-color", "#fffff");
+			$(".entry-content").css("border-left", "none");
 		} else {
-			$("#typed").css("display", "initial");
-			$(".entry_posts").css("border-top", "none");
+			$("#typed_links").css("display", "initial");
 			$(".entry-content").css("height", "100%");
+			$(".entry-content").css("background-color", "#FAFAFA");
+			$(".entry-content").css("border-left", "1px solid #E0E0E0");
 		}
 	}
+	fluidity();
 });
