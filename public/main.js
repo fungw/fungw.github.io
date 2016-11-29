@@ -46,7 +46,7 @@ $(document).ready(function() {
 		});
 
 		$("#personal_details").typed({
-			strings: ["Computer Scientist", "Web Developer", "Dublin"],
+			strings: ["Computer Scientist.", "Web Developer.", "Dublin."],
 			typeSpeed: 25,
 			backSpeed: 0,
 			startDelay: 1000,
