@@ -130,6 +130,10 @@ a:hover {
     margin-top: 0px;
 }
 
+.nav-items {
+	height: 27.5px;
+}
+
 #typed {
 	top: 0%;
     display: block;
