@@ -34,10 +34,14 @@
 
 .entry-image-portrait {
 	margin-top: 1.5%;
+	height: 50%;
+	width: 50%;
 }
 
 .entry-image-landscape {
 	margin-top: 0%;
+	height: 50%;
+	width: 50%
 }
 
 .details {
