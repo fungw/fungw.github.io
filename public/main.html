@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="./main.css">
 	<link href="https://fonts.googleapis.com/css?family=Anton|Sanchez|Open+Sans+Condensed|Amatic+SC:300" rel="stylesheet">
 	<link rel="icon" href="./favicon.ico" type="image/x-icon"/>
+	<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 
 	<!-- Javascript -->
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
@@ -22,7 +23,11 @@
 <body data-spy="scroll" data-target="#scrollSpy" data-offset="50" id="initial-view">
 	<div class="row entry">
 		<div class="col-lg-3 title-heading sidebar" id="initial-sidebar">
-			<span id="personal_date">1995</span>
+			<span style="display:none" id="mobile_personal_date">1995</span>
+			<div class="sign" id="personal_date">
+			  <div class="neon">
+			  <div class="seapagab">1</div><div class="seapaga">9</div>95</div>
+			</div>
 			<div class="col-xs-12 title-image">
 				<img src="./images/self_fisheye.png" height="200" width="200" id="personal_image">
 				<div class="col-xs-12 title-nav">

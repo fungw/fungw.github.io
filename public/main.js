@@ -77,6 +77,8 @@ $(window).on('load', function (e) {
 	});
 });
 
+var alternating = 0;
+
 $(document).ready(function() {
 	$(function(){
 		$("#personal_name").typed({
@@ -101,20 +103,39 @@ $(document).ready(function() {
       $("#personal_image").css("opacity", 1 - $(window).scrollTop() / ($('#external_links').height() * 3));
       $("#nav-links").css("opacity", 1 - $(window).scrollTop() / ($('#external_links').height() * 3));
       $("#personal_date").css("opacity", 1 - $(window).scrollTop() / ($('#external_links').height() * 3));
+      $("#sign").css("opacity", 1 - $(window).scrollTop() / ($('#external_links').height() * 3));
   });
 
-  $(window).resize(function() {
-  	fluidity();
+ 	$(window).resize(function() {
+  		fluidity();
 	});
 
 	function fluidity() {
 		if ($(window).width() < 1000) {
 			$("#typed_links").css("display", "none");
 			$(".entry-content").css("height", "0%");
+			$(".sign").css("display", "none");
+			$("#mobile_personal_date").css("display", "inline");
 		} else {
 			$("#typed_links").css("display", "initial");
 			$(".entry-content").css("height", "100%");
+			$(".sign").css("display", "initial");
+			$("#mobile_personal_date").css("display", "none");
 		}
 	}
 	fluidity();
+
+	// window.setInterval(function(){
+	//   alternateColors();
+	// }, 1000);
+
+	function alternateColors() {
+ 		if (alternating == 0) {
+     		$(".entry-content").css("border-left", "10px solid #ADFF9E");
+     		alternating = 1;
+ 		} else {
+ 			$(".entry-content").css("border-left", "10px solid #ff6a5c");
+ 			alternating = 0;
+ 		}
+	}
 });
