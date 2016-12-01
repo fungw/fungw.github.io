@@ -1,5 +1,4 @@
-$(document).ready(function() {
-
+$(window).on('load', function (e) {
 	$.getJSON("./images.json", function(data) {
 		var images = data.images;
 		for (i = 0; i < images.length; i++) {
@@ -36,8 +35,49 @@ $(document).ready(function() {
 				scrollTop: $("#"+id).offset().top
 			}, 1000);
 		});
-	});
 
+	  function generateRipple() {
+	  	const circle1 = new mojs.Shape({
+				fill:           'none',
+			  radius:         25,
+			  strokeWidth:    { 50 : 0 },
+			  scale:          { 0: 1 },
+			  angle:          { 'rand(-35, -70)': 0 },
+			  duration:       500,
+			  left: 0,        top: 0,
+			  easing: 'cubic.out',
+			  stroke:         'yellow',
+			});
+			const circle2 = new mojs.Shape({
+				fill:           'none',
+			  radius:         25,
+			  strokeWidth:    { 50 : 0 },
+			  scale:          { 0: 1 },
+			  angle:          { 'rand(-35, -70)': 0 },
+			  duration:       500,
+			  left: 0,        top: 0,
+			  easing: 'cubic.out',
+			  radius:         { 0 : 15 },
+			  strokeWidth:    { 30: 0 },
+			  stroke:         'red',
+			  delay:          'rand(75, 150)'
+			});
+			document.addEventListener( 'click', function (e) {
+			   circle1
+			    .tune({ x: e.pageX, y: e.pageY  })
+			    .replay();
+			  
+			  circle2
+			    .tune({ x: e.pageX, y: e.pageY  })
+			    .replay();
+			});
+  	};
+
+  	generateRipple();
+	});
+});
+
+$(document).ready(function() {
 	$(function(){
 		$("#personal_name").typed({
 			strings: ["Wesley Fung."],
@@ -56,9 +96,11 @@ $(document).ready(function() {
 	})
 
 	$(window).scroll(function(){
-      $("#external_links").css("opacity", 1 - $(window).scrollTop() / ($('#external_links').height() / 2));
-      $("#typed").css("opacity", 1 - $(window).scrollTop() / ($('#typed').height() / 2));
-      $("#initial-sidebar").css("opacity", 1 - $(window).scrollTop() / ($('#initial-sidebar').height() / 2));
+      $("#external_links").css("opacity", 1 - $(window).scrollTop() / ($('#personal_image').height() * 3));
+      $("#typed").css("opacity", 1 - $(window).scrollTop() / ($('#external_links').height() * 3));
+      $("#personal_image").css("opacity", 1 - $(window).scrollTop() / ($('#external_links').height() * 3));
+      $("#nav-links").css("opacity", 1 - $(window).scrollTop() / ($('#external_links').height() * 3));
+      $("#personal_date").css("opacity", 1 - $(window).scrollTop() / ($('#external_links').height() * 3));
   });
 
   $(window).resize(function() {
@@ -69,13 +111,9 @@ $(document).ready(function() {
 		if ($(window).width() < 1000) {
 			$("#typed_links").css("display", "none");
 			$(".entry-content").css("height", "0%");
-			$(".entry-content").css("background-color", "#fffff");
-			$(".entry-content").css("border-left", "none");
 		} else {
 			$("#typed_links").css("display", "initial");
 			$(".entry-content").css("height", "100%");
-			$(".entry-content").css("background-color", "#FAFAFA");
-			$(".entry-content").css("border-left", "1px solid #E0E0E0");
 		}
 	}
 	fluidity();

@@ -7,6 +7,8 @@
 .sidebar {
 	left: 10px !important;
 	height: 100%;
+	background-color: #E4E4E4;
+	color: #000;
 }
 
 .entry {
@@ -18,11 +20,14 @@
 .entry_posts {
 	top: 0%;
 	position: relative;
+	background-color: #E4E4E4;
+	color: #000;
 }
 
 .entry-content {
-	background-color: #FAFAFA;
-	border-left: 1px solid #E0E0E0;
+	background-color: #1B1B1B;
+	color: #fff;
+	border-left: 3px solid #F1684E;
 	height: 100%;
 }
 
@@ -74,15 +79,15 @@
 }
 
 nav ul li a:hover {
-    background-color:white !important;
+    background-color:#E4E4E4 !important;
 }
 
 nav ul li a:active {
-    background-color:white !important;
+    background-color:#E4E4E4 !important;
 }
 
 nav ul li a:visited {
-    background-color:white !important;
+    background-color:#E4E4E4 !important;
 }
 
 .nav-text:hover {
@@ -164,6 +169,10 @@ html {
 
 body {
 	height: 100%;
-	background: white;
 	position: relative;
+  padding: 0;
+}
+
+html {
+	padding: 0;
 }

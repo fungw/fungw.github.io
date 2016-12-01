@@ -9,10 +9,7 @@
 	<link rel="icon" href="./favicon.ico" type="image/x-icon"/>
 
 	<!-- Javascript -->
-	<script
-  src="https://code.jquery.com/jquery-3.1.1.min.js"
-  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.8/js/tether.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
 	<script src="./main.js"></script>
@@ -25,9 +22,9 @@
 <body data-spy="scroll" data-target="#scrollSpy" data-offset="50" id="initial-view">
 	<div class="row entry">
 		<div class="col-lg-3 title-heading sidebar" id="initial-sidebar">
-			1995
+			<span id="personal_date">1995</span>
 			<div class="col-xs-12 title-image">
-				<img src="./images/self_fisheye.png" height="200" width="200">
+				<img src="./images/self_fisheye.png" height="200" width="200" id="personal_image">
 				<div class="col-xs-12 title-nav">
 					<nav class="col-xs-12" id="scrollSpy">
 						<ul class="nav" id="nav-links">
@@ -52,6 +49,7 @@
 		</div>
 	</div>
 
+	<script src="//cdn.jsdelivr.net/mojs/latest/mo.min.js"></script>
 </body>
 
 </html>
