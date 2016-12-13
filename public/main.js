@@ -115,12 +115,10 @@ $(document).ready(function() {
 			$("#typed_links").css("display", "none");
 			$(".entry-content").css("height", "0%");
 			$(".sign").css("display", "none");
-			$("#mobile_personal_date").css("display", "inline");
 		} else {
 			$("#typed_links").css("display", "initial");
 			$(".entry-content").css("height", "100%");
 			$(".sign").css("display", "initial");
-			$("#mobile_personal_date").css("display", "none");
 		}
 	}
 	fluidity();
