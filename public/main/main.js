@@ -1,5 +1,5 @@
 $(window).on('load', function (e) {
-	$.getJSON("./images.json", function(data) {
+	$.getJSON("./main/images.json", function(data) {
 		var images = data.images;
 		for (i = 0; i < images.length; i++) {
 			var id = images[i].id;
