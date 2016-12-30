@@ -17,3 +17,7 @@ app.get('/', function(req, res) {
 app.listen(PORT, function() {
 	console.log('Server listening on port %s', PORT)
 });
+
+app.get('/mobile', function(req, res) {
+	res.sendFile(path.join(__dirname + '/public/main/mobile.html'));
+});
