@@ -1,3 +1,25 @@
+/* Tags */
+
+html {
+	height: 100%;
+	padding: 0;
+}
+
+body {
+	height: 100%;
+	position: relative;
+  padding: 0;
+}
+
+nav {
+	line-height: 20%;
+}
+
+img {
+	width: auto;
+	max-height: 95%;
+}
+
 .title-heading {
 	font-family: 'Anton', sans-serif;
 	font-size: 250%;
@@ -152,27 +174,4 @@ a:hover {
 
 #personal_name {
 	margin-bottom: 1%;
-}
-
-nav {
-	line-height: 20%;
-}
-
-img {
-	width: auto;
-	max-height: 95%;
-}
-
-html {
-	height: 100%;
-}
-
-body {
-	height: 100%;
-	position: relative;
-  padding: 0;
-}
-
-html {
-	padding: 0;
 }
