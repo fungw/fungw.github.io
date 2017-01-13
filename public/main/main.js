@@ -46,7 +46,7 @@ $(window).on('load', function (e) {
 			  duration:       500,
 			  left: 0,        top: 0,
 			  easing: 'cubic.out',
-			  stroke:         'yellow',
+			  stroke:         '#ECA72C',
 			});
 			const circle2 = new mojs.Shape({
 				fill:           'none',
@@ -59,7 +59,7 @@ $(window).on('load', function (e) {
 			  easing: 'cubic.out',
 			  radius:         { 0 : 15 },
 			  strokeWidth:    { 30: 0 },
-			  stroke:         'red',
+			  stroke:         '#EE5622',
 			  delay:          'rand(75, 150)'
 			});
 			document.addEventListener( 'click', function (e) {
