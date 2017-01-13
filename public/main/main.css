@@ -99,6 +99,7 @@ a:hover {
 
 .entry_posts {
 	top: 0%;
+	height: 100%;
 	position: relative;
 	background-color: #E4E4E4;
 	color: #000;
@@ -109,6 +110,10 @@ a:hover {
 	color: #fff;
 	border-left: 1px solid #E4E4E4;
 	height: 100%;
+}
+
+.entry-padding-top {
+	padding-top: 5%;
 }
 
 .entry-image-portrait {

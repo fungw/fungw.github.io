@@ -19,9 +19,9 @@ $(window).on('load', function (e) {
 							''+time+''+
 						'</div>'+
 					'</div>'+
-					'<div class="col-xs-12 col-lg-9 entry-content centered">'+
+					'<div class="col-xs-12 col-lg-9 entry-content centered entry-padding-top">'+
 						'<a href='+google_maps+' target="_blank">'+
-							'<img src="./images/'+filename+'" class="entry-image-portrait" height="'+height+'" width="'+width+'">'+
+							'<img src="./images/'+filename+'" height="'+height+'" width="'+width+'">'+
 						'</a>'+
 					'</div>'+
 				'</div>').appendTo("#initial-view");
