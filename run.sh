@@ -1,2 +1,2 @@
-coffee -c app.coffee
-node app.js
+gulp
+node ./core/app.js
