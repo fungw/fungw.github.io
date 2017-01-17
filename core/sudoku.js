@@ -27,12 +27,12 @@ sudokuFill = function(grid) {
   sudokuValue = _.random(0, 9);
   row = _.random(0, 8);
   col = _.random(0, 8);
-  grid[col][row] = sudokuValue;
+  grid[row][col] = sudokuValue;
   return valid = backtrack(grid, row, col);
 };
 
 backtrack = function(grid, row, col) {
-  return checkSector(grid, row, col & checkRow(grid, row & checkCol(grid, col)));
+  return checkSector(grid, row, col) & checkRow(grid, row) & checkCol(grid, col);
 };
 
 checkSector = function(grid, row, col) {
@@ -48,7 +48,7 @@ checkRow = function(grid, row) {
   while (i < 9) {
     value = TRACKER[i];
     while (j < 9) {
-      if (grid[j][row] === value) {
+      if (grid[row][j] === value) {
         return false;
       } else {
         j++;
@@ -63,16 +63,16 @@ checkCol = function(grid, col) {
   var i, j, value;
   i = 0;
   j = 0;
-  while (i < 9) {
-    value = TRACKER[i];
-    while (j < 9) {
-      if (grid[col][j] === value) {
+  while (j < 9) {
+    value = TRACKER[j];
+    while (i < 9) {
+      if (grid[i][col] === value) {
         return false;
       } else {
-        j++;
+        i++;
       }
     }
-    i++;
+    j++;
   }
   return true;
 };
