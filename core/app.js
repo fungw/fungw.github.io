@@ -1,10 +1,12 @@
-var PORT, app, express, path, sudoku;
+var PORT, app, express, parking, path, sudoku;
 
 express = require('express');
 
 path = require('path');
 
 sudoku = require('./sudoku.js');
+
+parking = require('./parking.js');
 
 app = express();
 
@@ -34,4 +36,14 @@ app.get('/sudoku', function(req, res) {
 
 app.get('/generateSudoku', function(req, res) {
   console.log(sudoku.generateSudoku());
+});
+
+app.get('/parking', function(req, res) {
+  res.sendFile(path.join(__dirname + '/../modules/parking/parking.html'));
+});
+
+app.get('/fetchParkingInfo', function(req, res) {
+  parking.fetchParkingInfo(function(data) {
+    return res.send(data);
+  });
 });
