@@ -7,7 +7,7 @@ db = new sqlite3.Database('./lot.db');
 fetchParkingInfo = function(cb) {
   var data;
   data = [];
-  return db.each("SELECT * FROM PARKINGLOT;", (function(err, rows) {
+  return db.each("SELECT * FROM PARKINGLOT ORDER BY time DESC limit 1;", (function(err, rows) {
     return data.push(rows);
   }), function() {
     db.close;

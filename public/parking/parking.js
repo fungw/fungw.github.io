@@ -1,32 +1,54 @@
 $(function() {
-  var loadChart, lot_names, lot_spaces, total_spaces;
+  var loadChart, lot_names, lot_spaces, na_spaces, total_spaces;
   lot_names = [];
   lot_spaces = [];
-  total_spaces = [500, 1000, 264, 500, 567, 340, 145, 370, 252, 1127, 465, 380];
+  total_spaces = [500, 1000, 264, 500, 567, 340, 220, 212, 145, 370, 252, 1127, 465, 380];
+  na_spaces = [];
   $.ajax({
     url: "/fetchParkingInfo",
     type: "GET",
     success: function(err, res, body) {
-      var data, key;
+      var data, i, key;
       data = JSON.parse(body.responseText);
+      i = 0;
       for (key in data[0]) {
-        if (data[0].hasOwnProperty(key)) {
+        if (key !== 'time') {
+          lot_names.push(key);
+        }
+        console.log(data[0][key] + ' i: ' + i);
+        console.log(data[0][key].length);
+        if (data[0][key].length === 1) {
           if (key !== 'time') {
-            lot_names.push(key);
+            na_spaces.push(total_spaces[i]);
           }
+          if (key !== 'time') {
+            lot_spaces.push(0);
+          }
+          total_spaces[i] = 0;
+        } else {
           if (key !== 'time') {
             lot_spaces.push(data[0][key]);
           }
+          if (key !== 'time') {
+            na_spaces.push(0);
+          }
         }
+        i++;
       }
       return loadChart();
     },
     error: function(err, res, body) {}
   });
   return loadChart = function() {
-    var occupied;
-    occupied = _.difference(total_spaces, lot_spaces);
-    occupied = occupied.map(Number);
+    var difference, i, occupied;
+    i = 0;
+    occupied = [];
+    while (i < total_spaces.length) {
+      difference = total_spaces[i] - lot_spaces[i];
+      occupied[i] = difference < 0 ? 0 : difference;
+      i++;
+    }
+    console.log(occupied);
     lot_spaces = lot_spaces.map(Number);
     return Highcharts.chart('container', {
       chart: {
@@ -36,7 +58,7 @@ $(function() {
         text: 'Dublin Parking Information'
       },
       subtitle: {
-        text: 'Source: <a href="http://www.dublincity.ie/dublintraffic/carparks.htm">Dublin City Traffic</a>'
+        text: 'Source: <a target="_blank" href="http://www.dublincity.ie/dublintraffic/carparks.htm">Dublin City Traffic</a>'
       },
       xAxis: {
         categories: lot_names
@@ -44,7 +66,7 @@ $(function() {
       yAxis: {
         min: 0,
         title: {
-          text: 'Parking Spaces'
+          text: 'Parking Spaces %'
         }
       },
       tooltip: {
@@ -63,6 +85,9 @@ $(function() {
         }, {
           name: 'Available',
           data: lot_spaces
+        }, {
+          name: 'No Data',
+          data: na_spaces
         }
       ]
     });
