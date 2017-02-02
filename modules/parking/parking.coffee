@@ -3,6 +3,7 @@ $ ->
   lot_spaces = []
   total_spaces = [500, 1000, 264, 500, 567, 340, 220, 212, 145, 370, 252, 1127, 465, 380]
   na_spaces = []
+  time = ""
 
   $.ajax
     url: "/fetchParkingInfo"
@@ -12,8 +13,6 @@ $ ->
       i = 0
       for key of data[0]
         lot_names.push(key) unless key == 'time'
-        console.log data[0][key] + ' i: ' + i
-        console.log data[0][key].length
         if data[0][key].length == 1
           na_spaces.push(total_spaces[i]) unless key == 'time'
           lot_spaces.push(0) unless key == 'time'
@@ -22,6 +21,9 @@ $ ->
           lot_spaces.push(data[0][key]) unless key == 'time'
           na_spaces.push(0) unless key == 'time'
         i++
+        if key == 'time'
+          time = data[0][key]
+          console.log time
       loadChart()
     error: (err, res, body) ->
 
@@ -32,12 +34,11 @@ $ ->
       difference = total_spaces[i] - lot_spaces[i]
       occupied[i] = if difference < 0 then 0 else difference
       i++
-    console.log occupied
     lot_spaces = lot_spaces.map(Number)
     Highcharts.chart 'container',
       chart: type: 'bar'
       title: text: 'Dublin Parking Information'
-      subtitle: text: 'Source: <a target="_blank" href="http://www.dublincity.ie/dublintraffic/carparks.htm">Dublin City Traffic</a>'
+      subtitle: text: 'Source: <a target="_blank" href="http://www.dublincity.ie/dublintraffic/carparks.htm">Dublin City Traffic</a> | Last Updated: ' + time
       xAxis: categories: lot_names
       yAxis:
         min: 0
