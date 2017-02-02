@@ -1,9 +1,10 @@
 $(function() {
-  var loadChart, lot_names, lot_spaces, na_spaces, total_spaces;
+  var loadChart, lot_names, lot_spaces, na_spaces, time, total_spaces;
   lot_names = [];
   lot_spaces = [];
   total_spaces = [500, 1000, 264, 500, 567, 340, 220, 212, 145, 370, 252, 1127, 465, 380];
   na_spaces = [];
+  time = "";
   $.ajax({
     url: "/fetchParkingInfo",
     type: "GET",
@@ -15,8 +16,6 @@ $(function() {
         if (key !== 'time') {
           lot_names.push(key);
         }
-        console.log(data[0][key] + ' i: ' + i);
-        console.log(data[0][key].length);
         if (data[0][key].length === 1) {
           if (key !== 'time') {
             na_spaces.push(total_spaces[i]);
@@ -34,6 +33,10 @@ $(function() {
           }
         }
         i++;
+        if (key === 'time') {
+          time = data[0][key];
+          console.log(time);
+        }
       }
       return loadChart();
     },
@@ -48,7 +51,6 @@ $(function() {
       occupied[i] = difference < 0 ? 0 : difference;
       i++;
     }
-    console.log(occupied);
     lot_spaces = lot_spaces.map(Number);
     return Highcharts.chart('container', {
       chart: {
@@ -58,7 +60,7 @@ $(function() {
         text: 'Dublin Parking Information'
       },
       subtitle: {
-        text: 'Source: <a target="_blank" href="http://www.dublincity.ie/dublintraffic/carparks.htm">Dublin City Traffic</a>'
+        text: 'Source: <a target="_blank" href="http://www.dublincity.ie/dublintraffic/carparks.htm">Dublin City Traffic</a> | Last Updated: ' + time
       },
       xAxis: {
         categories: lot_names
