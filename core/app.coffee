@@ -1,6 +1,8 @@
 express = require('express')
 path = require('path')
 sudoku = require('./sudoku.js')
+parking = require('./parking.js')
+
 app = express()
 PORT = 8080
 app.use express.static('public')
@@ -30,3 +32,14 @@ app.get '/sudoku', (req, res) ->
 app.get '/generateSudoku', (req, res) ->
   console.log sudoku.generateSudoku()
   return
+
+# Dublin Parking Lot routing
+app.get '/parking', (req, res) ->
+  res.sendFile path.join(__dirname + '/../modules/parking/parking.html')
+  return
+
+app.get '/fetchParkingInfo', (req, res) ->
+  parking.fetchParkingInfo (data) ->
+    res.send data
+  return
+  
