@@ -1,34 +1,47 @@
 $ ->
   lot_names = []
   lot_spaces = []
-  total_spaces = [500, 1000, 264, 500, 567, 340, 145, 370, 252, 1127, 465, 380]
+  total_spaces = [500, 1000, 264, 500, 567, 340, 220, 212, 145, 370, 252, 1127, 465, 380]
+  na_spaces = []
 
   $.ajax
     url: "/fetchParkingInfo"
     type: "GET"
     success: (err, res, body) ->
       data = JSON.parse body.responseText
+      i = 0
       for key of data[0]
-        if data[0].hasOwnProperty(key)
-          #console.log key + ' -> ' + data[0][key]
-          lot_names.push(key) unless key == 'time'
+        lot_names.push(key) unless key == 'time'
+        console.log data[0][key] + ' i: ' + i
+        console.log data[0][key].length
+        if data[0][key].length == 1
+          na_spaces.push(total_spaces[i]) unless key == 'time'
+          lot_spaces.push(0) unless key == 'time'
+          total_spaces[i] = 0
+        else
           lot_spaces.push(data[0][key]) unless key == 'time'
-      #console.log lot_names
+          na_spaces.push(0) unless key == 'time'
+        i++
       loadChart()
     error: (err, res, body) ->
 
   loadChart = () ->
-    occupied = _.difference(total_spaces, lot_spaces)
-    occupied = occupied.map(Number)
+    i = 0
+    occupied = []
+    while i < total_spaces.length
+      difference = total_spaces[i] - lot_spaces[i]
+      occupied[i] = if difference < 0 then 0 else difference
+      i++
+    console.log occupied
     lot_spaces = lot_spaces.map(Number)
     Highcharts.chart 'container',
       chart: type: 'bar'
       title: text: 'Dublin Parking Information'
-      subtitle: text: 'Source: <a href="http://www.dublincity.ie/dublintraffic/carparks.htm">Dublin City Traffic</a>'
+      subtitle: text: 'Source: <a target="_blank" href="http://www.dublincity.ie/dublintraffic/carparks.htm">Dublin City Traffic</a>'
       xAxis: categories: lot_names
       yAxis:
         min: 0
-        title: text: 'Parking Spaces'
+        title: text: 'Parking Spaces %'
       tooltip:
         pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>'
         shared: true
@@ -41,5 +54,9 @@ $ ->
         {
           name: 'Available'
           data: lot_spaces
+        }
+        {
+          name: 'No Data'
+          data: na_spaces
         }
       ]
