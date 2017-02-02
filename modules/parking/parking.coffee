@@ -18,12 +18,14 @@ $ ->
           lot_spaces.push(0) unless key == 'time'
           total_spaces[i] = 0
         else
-          lot_spaces.push(data[0][key]) unless key == 'time'
+          if data[0][key] == 'FULL'
+            lot_spaces.push(0)
+          else
+            lot_spaces.push(data[0][key]) unless key == 'time'
           na_spaces.push(0) unless key == 'time'
         i++
         if key == 'time'
           time = data[0][key]
-          console.log time
       loadChart()
     error: (err, res, body) ->
 
