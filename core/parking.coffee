@@ -3,7 +3,7 @@ db = new sqlite3.Database('./lot.db')
 
 fetchParkingInfo = (cb) ->
   data = []
-  db.each "SELECT * FROM PARKINGLOT;", ((err, rows) ->
+  db.each "SELECT * FROM PARKINGLOT ORDER BY time DESC limit 1;", ((err, rows) ->
     data.push rows
   ), ->
     db.close
