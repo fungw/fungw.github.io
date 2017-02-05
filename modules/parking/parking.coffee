@@ -1,3 +1,19 @@
+directionsService = {}
+
+initGoogleService = ->
+  directionsService = new google.maps.DirectionsService()
+
+requestGoogleDir = (src, dst) ->
+  request = {
+    origin: src,
+    destination: dst,
+    travelMode: 'DRIVING'
+  }
+  directionsService.route(request, (result, status) ->
+    if status == 'OK'
+      alert result.routes[0].legs[0].duration.text
+  )
+
 $ ->
   lot_names = []
   lot_spaces = []
@@ -48,7 +64,14 @@ $ ->
       tooltip:
         pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>'
         shared: true
-      plotOptions: series: stacking: 'percent', events: click: () -> console.log event.point.category
+      plotOptions: 
+        series: 
+          stacking: 'percent', 
+          events: 
+            click: () ->
+              initMap()
+              $("#mapModal").modal()
+              #requestParkLotInfo(event.point.category) unless !navigator.geolocation
       series: [
         {
           name: 'Occupied'
@@ -63,3 +86,42 @@ $ ->
           data: na_spaces
         }
       ]
+
+  initMap = ->
+    map = new (google.maps.Map)(document.getElementById('map'),
+      center:
+        lat: -34.397
+        lng: 150.644
+      zoom: 6)
+    infoWindow = new (google.maps.InfoWindow)(map: map)
+    # Try HTML5 geolocation.
+    if navigator.geolocation
+      navigator.geolocation.getCurrentPosition ((position) ->
+        pos = 
+          lat: position.coords.latitude
+          lng: position.coords.longitude
+        map.setCenter pos
+        return
+      ), ->
+        handleLocationError true, infoWindow, map.getCenter()
+        return
+    else
+      # Browser doesn't support Geolocation
+      handleLocationError false, infoWindow, map.getCenter()
+    return
+
+  handleLocationError = (browserHasGeolocation, infoWindow, pos) ->
+    infoWindow.setPosition pos
+    infoWindow.setContent if browserHasGeolocation then 'Error: The Geolocation service failed.' else 'Error: Your browser doesn\'t support geolocation.'
+    return
+
+  requestParkLotInfo = (parking_lot_name) ->
+    user_location_TEST = "53.3408119, -6.2461844"
+    $.ajax
+      url: "/requestParkLotInfo"
+      type: "GET"
+      data: { user_location_TEST, parking_lot_name }
+      success: (err, res, body) ->
+        data = JSON.parse body.responseText
+        requestGoogleDir data.src, data.dst
+      error: (err, res, body) ->

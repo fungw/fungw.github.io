@@ -1,5 +1,27 @@
+var directionsService, initGoogleService, requestGoogleDir;
+
+directionsService = {};
+
+initGoogleService = function() {
+  return directionsService = new google.maps.DirectionsService();
+};
+
+requestGoogleDir = function(src, dst) {
+  var request;
+  request = {
+    origin: src,
+    destination: dst,
+    travelMode: 'DRIVING'
+  };
+  return directionsService.route(request, function(result, status) {
+    if (status === 'OK') {
+      return alert(result.routes[0].legs[0].duration.text);
+    }
+  });
+};
+
 $(function() {
-  var loadChart, lot_names, lot_spaces, na_spaces, time, total_spaces;
+  var handleLocationError, initMap, loadChart, lot_names, lot_spaces, na_spaces, requestParkLotInfo, time, total_spaces;
   lot_names = [];
   lot_spaces = [];
   total_spaces = [500, 1000, 264, 500, 567, 340, 220, 212, 145, 370, 252, 1127, 465, 380];
@@ -45,7 +67,7 @@ $(function() {
     },
     error: function(err, res, body) {}
   });
-  return loadChart = function() {
+  loadChart = function() {
     var difference, i, occupied;
     i = 0;
     occupied = [];
@@ -83,7 +105,8 @@ $(function() {
           stacking: 'percent',
           events: {
             click: function() {
-              return console.log(event.point.category);
+              initMap();
+              return $("#mapModal").modal();
             }
           }
         }
@@ -100,6 +123,55 @@ $(function() {
           data: na_spaces
         }
       ]
+    });
+  };
+  initMap = function() {
+    var infoWindow, map;
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {
+        lat: -34.397,
+        lng: 150.644
+      },
+      zoom: 6
+    });
+    infoWindow = new google.maps.InfoWindow({
+      map: map
+    });
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((function(position) {
+        var pos;
+        pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        map.setCenter(pos);
+      }), function() {
+        handleLocationError(true, infoWindow, map.getCenter());
+      });
+    } else {
+      handleLocationError(false, infoWindow, map.getCenter());
+    }
+  };
+  handleLocationError = function(browserHasGeolocation, infoWindow, pos) {
+    infoWindow.setPosition(pos);
+    infoWindow.setContent(browserHasGeolocation ? 'Error: The Geolocation service failed.' : 'Error: Your browser doesn\'t support geolocation.');
+  };
+  return requestParkLotInfo = function(parking_lot_name) {
+    var user_location_TEST;
+    user_location_TEST = "53.3408119, -6.2461844";
+    return $.ajax({
+      url: "/requestParkLotInfo",
+      type: "GET",
+      data: {
+        user_location_TEST: user_location_TEST,
+        parking_lot_name: parking_lot_name
+      },
+      success: function(err, res, body) {
+        var data;
+        data = JSON.parse(body.responseText);
+        return requestGoogleDir(data.src, data.dst);
+      },
+      error: function(err, res, body) {}
     });
   };
 });

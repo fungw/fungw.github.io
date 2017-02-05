@@ -9,37 +9,34 @@ app.use express.static('public')
 
 app.get '/favicon.ico', (req, res) ->
   res.sendStatus 200
-  return
 
 # Main view routing
 app.get '/', (req, res) ->
   res.sendFile path.join(__dirname + '/../modules/main/main.html')
-  return
 
 app.listen PORT, ->
   console.log 'Server listening on port %s', PORT
-  return
 
 app.get '/mobile', (req, res) ->
   res.sendFile path.join(__dirname + '/../modules/main/mobile.html')
-  return
 
 # Sudoku routing
 app.get '/sudoku', (req, res) ->
   res.sendFile path.join(__dirname + '/../modules/sudoku/sudoku.html')
-  return
 
 app.get '/generateSudoku', (req, res) ->
   console.log sudoku.generateSudoku()
-  return
 
 # Dublin Parking Lot routing
 app.get '/parking', (req, res) ->
   res.sendFile path.join(__dirname + '/../modules/parking/parking.html')
-  return
 
 app.get '/fetchParkingInfo', (req, res) ->
   parking.fetchParkingInfo (data) ->
     res.send data
-  return
   
+app.get '/requestParkLotInfo', (req, res) ->
+  parking.requestParkLotInfo(req.query, (cb) ->
+    res.send cb
+  )
+    
