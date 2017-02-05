@@ -48,7 +48,7 @@ $ ->
       tooltip:
         pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>'
         shared: true
-      plotOptions: series: stacking: 'percent'
+      plotOptions: series: stacking: 'percent', events: click: () -> console.log event.point.category
       series: [
         {
           name: 'Occupied'

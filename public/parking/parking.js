@@ -80,7 +80,12 @@ $(function() {
       },
       plotOptions: {
         series: {
-          stacking: 'percent'
+          stacking: 'percent',
+          events: {
+            click: function() {
+              return console.log(event.point.category);
+            }
+          }
         }
       },
       series: [
