@@ -20,6 +20,8 @@ requestParkLotInfo = (req, cb) ->
 
     route = {
       src: req_user_location
+      dst_lat: lot_parsed[req_lot_name].lat
+      dst_lng: lot_parsed[req_lot_name].lng
       dst: lot_parsed[req_lot_name].coordinates
     }
     cb route 

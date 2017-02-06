@@ -28,6 +28,8 @@ requestParkLotInfo = function(req, cb) {
     req_user_location = req.user_location_TEST;
     route = {
       src: req_user_location,
+      dst_lat: lot_parsed[req_lot_name].lat,
+      dst_lng: lot_parsed[req_lot_name].lng,
       dst: lot_parsed[req_lot_name].coordinates
     };
     return cb(route);

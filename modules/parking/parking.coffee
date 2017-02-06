@@ -1,8 +1,11 @@
 map = undefined
+directionsService = undefined
 lat = 53.347347
 lng = -6.259189
+markers = []
 
-initMap = ->
+initGoogleService = ->
+  directionsService = new google.maps.DirectionsService()
   mapOptions =  
     center: new (google.maps.LatLng)(lat, lng)
     zoom: 13
@@ -12,14 +15,36 @@ mapResize = () ->
   google.maps.event.trigger map, 'resize'
   map.setCenter(new google.maps.LatLng(lat, lng))
 
+addMarker = (lat, lng) ->
+  marker = new (google.maps.Marker)(
+    position: new google.maps.LatLng(lat, lng)
+    title: 'Home Center')
+  markers.push marker
+  showMarkers()
+
+setMapOnAll = (clear) ->
+  i = 0
+  while i < markers.length
+    markers[i].setMap map
+    i++
+
+clearMarkers = () ->
+  setMapOnAll(null)
+
+showMarkers = () ->
+  setMapOnAll map
+
+deleteMarkers = () ->
+  clearMarkers()
+  markers = []
+
+
 $ ->
   lot_names = []
   lot_spaces = []
   total_spaces = [500, 1000, 264, 500, 567, 340, 220, 212, 145, 370, 252, 1127, 465, 380]
   na_spaces = []
   time = ""
-  directionsService = {}
-
 
   $.ajax
     url: "/fetchParkingInfo"
@@ -85,10 +110,7 @@ $ ->
           data: na_spaces
         }
       ]
-
-  initGoogleService = ->
-    directionsService = new google.maps.DirectionsService()
-
+    
   requestGoogleDir = (src, dst) ->
     request = {
       origin: src,
@@ -109,6 +131,8 @@ $ ->
       success: (err, res, body) ->
         data = JSON.parse body.responseText
         requestGoogleDir data.src, data.dst
+        deleteMarkers()
+        addMarker data.dst_lat, data.dst_lng
       error: (err, res, body) ->
 
   $('#mapModal').on 'shown.bs.modal', (e) ->
@@ -116,4 +140,3 @@ $ ->
 
   $(document).ready ->
     initGoogleService()
-    initMap()

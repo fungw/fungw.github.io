@@ -1,13 +1,18 @@
-var initMap, lat, lng, map, mapResize;
+var addMarker, clearMarkers, deleteMarkers, directionsService, initGoogleService, lat, lng, map, mapResize, markers, setMapOnAll, showMarkers;
 
 map = void 0;
+
+directionsService = void 0;
 
 lat = 53.347347;
 
 lng = -6.259189;
 
-initMap = function() {
+markers = [];
+
+initGoogleService = function() {
   var mapOptions;
+  directionsService = new google.maps.DirectionsService();
   mapOptions = {
     center: new google.maps.LatLng(lat, lng),
     zoom: 13
@@ -20,14 +25,47 @@ mapResize = function() {
   return map.setCenter(new google.maps.LatLng(lat, lng));
 };
 
+addMarker = function(lat, lng) {
+  var marker;
+  marker = new google.maps.Marker({
+    position: new google.maps.LatLng(lat, lng),
+    title: 'Home Center'
+  });
+  markers.push(marker);
+  return showMarkers();
+};
+
+setMapOnAll = function(clear) {
+  var i, results;
+  i = 0;
+  results = [];
+  while (i < markers.length) {
+    markers[i].setMap(map);
+    results.push(i++);
+  }
+  return results;
+};
+
+clearMarkers = function() {
+  return setMapOnAll(null);
+};
+
+showMarkers = function() {
+  return setMapOnAll(map);
+};
+
+deleteMarkers = function() {
+  clearMarkers();
+  return markers = [];
+};
+
 $(function() {
-  var directionsService, initGoogleService, loadChart, lot_names, lot_spaces, na_spaces, requestGoogleDir, requestParkLotInfo, time, total_spaces;
+  var loadChart, lot_names, lot_spaces, na_spaces, requestGoogleDir, requestParkLotInfo, time, total_spaces;
   lot_names = [];
   lot_spaces = [];
   total_spaces = [500, 1000, 264, 500, 567, 340, 220, 212, 145, 370, 252, 1127, 465, 380];
   na_spaces = [];
   time = "";
-  directionsService = {};
   $.ajax({
     url: "/fetchParkingInfo",
     type: "GET",
@@ -128,9 +166,6 @@ $(function() {
       ]
     });
   };
-  initGoogleService = function() {
-    return directionsService = new google.maps.DirectionsService();
-  };
   requestGoogleDir = function(src, dst) {
     var request;
     request = {
@@ -157,7 +192,9 @@ $(function() {
       success: function(err, res, body) {
         var data;
         data = JSON.parse(body.responseText);
-        return requestGoogleDir(data.src, data.dst);
+        requestGoogleDir(data.src, data.dst);
+        deleteMarkers();
+        return addMarker(data.dst_lat, data.dst_lng);
       },
       error: function(err, res, body) {}
     });
@@ -166,7 +203,6 @@ $(function() {
     return mapResize();
   });
   return $(document).ready(function() {
-    initGoogleService();
-    return initMap();
+    return initGoogleService();
   });
 });
