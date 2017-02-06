@@ -61,6 +61,7 @@ $(window).on('load', function(e) {
       });
     };
     i = 0;
+    $('<li id="parking-button" class="nav-items"><a href="/parking" class="nav-text">Dublin Parking Lots</a></li>').appendTo('#nav-links');
     while (i < images.length) {
       id = images[i].id;
       filename = images[i].filename;
@@ -71,8 +72,6 @@ $(window).on('load', function(e) {
       google_maps = images[i].google_maps;
       orientation = images[i].orientation;
       type = orientation === 'portrait' ? 'padding-portrait' : 'padding-landscape';
-      console.log(orientation);
-      console.log(type);
       $('<div class="row entry_posts" id="' + id + '">' + '<div class="col-lg-3">' + '<div class="col-lg-12 title-heading sidebar">' + '' + name + '' + '</div>' + '<div class="col-lg-6 title-smallText sidebar">' + '' + time + '' + '</div>' + '</div>' + '<div class="col-xs-12 col-lg-9 entry-content centered ' + type + '">' + '<a href=' + google_maps + ' target="_blank">' + '<img src="./images/' + filename + '" height="' + height + '" width="' + width + '">' + '</a>' + '</div>' + '</div>').appendTo("#initial-view");
       $('<li id="' + id + '-button" class="nav-items"><a href="#" class="nav-text">' + name + '</a></li>').appendTo('#nav-links');
       i++;
