@@ -1,18 +1,16 @@
-directionsService = {}
+map = undefined
+lat = 53.347347
+lng = -6.259189
 
-initGoogleService = ->
-  directionsService = new google.maps.DirectionsService()
+initMap = ->
+  mapOptions =  
+    center: new (google.maps.LatLng)(lat, lng)
+    zoom: 13
+  map = new (google.maps.Map)(document.getElementById('map'), mapOptions)
 
-requestGoogleDir = (src, dst) ->
-  request = {
-    origin: src,
-    destination: dst,
-    travelMode: 'DRIVING'
-  }
-  directionsService.route(request, (result, status) ->
-    if status == 'OK'
-      alert result.routes[0].legs[0].duration.text
-  )
+mapResize = () ->
+  google.maps.event.trigger map, 'resize'
+  map.setCenter(new google.maps.LatLng(lat, lng))
 
 $ ->
   lot_names = []
@@ -20,6 +18,8 @@ $ ->
   total_spaces = [500, 1000, 264, 500, 567, 340, 220, 212, 145, 370, 252, 1127, 465, 380]
   na_spaces = []
   time = ""
+  directionsService = {}
+
 
   $.ajax
     url: "/fetchParkingInfo"
@@ -69,9 +69,8 @@ $ ->
           stacking: 'percent', 
           events: 
             click: () ->
-              initMap()
               $("#mapModal").modal()
-              #requestParkLotInfo(event.point.category) unless !navigator.geolocation
+              requestParkLotInfo(event.point.category) unless !navigator.geolocation
       series: [
         {
           name: 'Occupied'
@@ -87,33 +86,19 @@ $ ->
         }
       ]
 
-  initMap = ->
-    map = new (google.maps.Map)(document.getElementById('map'),
-      center:
-        lat: -34.397
-        lng: 150.644
-      zoom: 6)
-    infoWindow = new (google.maps.InfoWindow)(map: map)
-    # Try HTML5 geolocation.
-    if navigator.geolocation
-      navigator.geolocation.getCurrentPosition ((position) ->
-        pos = 
-          lat: position.coords.latitude
-          lng: position.coords.longitude
-        map.setCenter pos
-        return
-      ), ->
-        handleLocationError true, infoWindow, map.getCenter()
-        return
-    else
-      # Browser doesn't support Geolocation
-      handleLocationError false, infoWindow, map.getCenter()
-    return
+  initGoogleService = ->
+    directionsService = new google.maps.DirectionsService()
 
-  handleLocationError = (browserHasGeolocation, infoWindow, pos) ->
-    infoWindow.setPosition pos
-    infoWindow.setContent if browserHasGeolocation then 'Error: The Geolocation service failed.' else 'Error: Your browser doesn\'t support geolocation.'
-    return
+  requestGoogleDir = (src, dst) ->
+    request = {
+      origin: src,
+      destination: dst,
+      travelMode: 'DRIVING'
+    }
+    directionsService.route(request, (result, status) ->
+      if status == 'OK'
+        console.log result.routes[0].legs[0].duration.text
+    )
 
   requestParkLotInfo = (parking_lot_name) ->
     user_location_TEST = "53.3408119, -6.2461844"
@@ -125,3 +110,10 @@ $ ->
         data = JSON.parse body.responseText
         requestGoogleDir data.src, data.dst
       error: (err, res, body) ->
+
+  $('#mapModal').on 'shown.bs.modal', (e) ->
+    mapResize()
+
+  $(document).ready ->
+    initGoogleService()
+    initMap()

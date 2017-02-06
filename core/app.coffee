@@ -7,7 +7,7 @@ app = express()
 PORT = 8080
 app.use express.static('public')
 
-app.get '/favicon.ico', (req, res) ->
+app.get '/favicon2.ico', (req, res) ->
   res.sendStatus 200
 
 # Main view routing
@@ -36,7 +36,5 @@ app.get '/fetchParkingInfo', (req, res) ->
     res.send data
   
 app.get '/requestParkLotInfo', (req, res) ->
-  parking.requestParkLotInfo(req.query, (cb) ->
+  parking.requestParkLotInfo req.query, (cb) ->
     res.send cb
-  )
-    

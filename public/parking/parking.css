@@ -2,5 +2,7 @@ body {
   background: linear-gradient(to bottom right, #2a2a2b, #3e3e40);
 }
 #map {
-  height: 50%;
+  height: 75%;
+  padding: 0;
+  width: 100%;
 }

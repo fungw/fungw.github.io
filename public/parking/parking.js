@@ -1,32 +1,33 @@
-var directionsService, initGoogleService, requestGoogleDir;
+var initMap, lat, lng, map, mapResize;
 
-directionsService = {};
+map = void 0;
 
-initGoogleService = function() {
-  return directionsService = new google.maps.DirectionsService();
+lat = 53.347347;
+
+lng = -6.259189;
+
+initMap = function() {
+  var mapOptions;
+  mapOptions = {
+    center: new google.maps.LatLng(lat, lng),
+    zoom: 13
+  };
+  return map = new google.maps.Map(document.getElementById('map'), mapOptions);
 };
 
-requestGoogleDir = function(src, dst) {
-  var request;
-  request = {
-    origin: src,
-    destination: dst,
-    travelMode: 'DRIVING'
-  };
-  return directionsService.route(request, function(result, status) {
-    if (status === 'OK') {
-      return alert(result.routes[0].legs[0].duration.text);
-    }
-  });
+mapResize = function() {
+  google.maps.event.trigger(map, 'resize');
+  return map.setCenter(new google.maps.LatLng(lat, lng));
 };
 
 $(function() {
-  var handleLocationError, initMap, loadChart, lot_names, lot_spaces, na_spaces, requestParkLotInfo, time, total_spaces;
+  var directionsService, initGoogleService, loadChart, lot_names, lot_spaces, na_spaces, requestGoogleDir, requestParkLotInfo, time, total_spaces;
   lot_names = [];
   lot_spaces = [];
   total_spaces = [500, 1000, 264, 500, 567, 340, 220, 212, 145, 370, 252, 1127, 465, 380];
   na_spaces = [];
   time = "";
+  directionsService = {};
   $.ajax({
     url: "/fetchParkingInfo",
     type: "GET",
@@ -105,8 +106,10 @@ $(function() {
           stacking: 'percent',
           events: {
             click: function() {
-              initMap();
-              return $("#mapModal").modal();
+              $("#mapModal").modal();
+              if (!!navigator.geolocation) {
+                return requestParkLotInfo(event.point.category);
+              }
             }
           }
         }
@@ -125,38 +128,23 @@ $(function() {
       ]
     });
   };
-  initMap = function() {
-    var infoWindow, map;
-    map = new google.maps.Map(document.getElementById('map'), {
-      center: {
-        lat: -34.397,
-        lng: 150.644
-      },
-      zoom: 6
-    });
-    infoWindow = new google.maps.InfoWindow({
-      map: map
-    });
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((function(position) {
-        var pos;
-        pos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-        map.setCenter(pos);
-      }), function() {
-        handleLocationError(true, infoWindow, map.getCenter());
-      });
-    } else {
-      handleLocationError(false, infoWindow, map.getCenter());
-    }
+  initGoogleService = function() {
+    return directionsService = new google.maps.DirectionsService();
   };
-  handleLocationError = function(browserHasGeolocation, infoWindow, pos) {
-    infoWindow.setPosition(pos);
-    infoWindow.setContent(browserHasGeolocation ? 'Error: The Geolocation service failed.' : 'Error: Your browser doesn\'t support geolocation.');
+  requestGoogleDir = function(src, dst) {
+    var request;
+    request = {
+      origin: src,
+      destination: dst,
+      travelMode: 'DRIVING'
+    };
+    return directionsService.route(request, function(result, status) {
+      if (status === 'OK') {
+        return console.log(result.routes[0].legs[0].duration.text);
+      }
+    });
   };
-  return requestParkLotInfo = function(parking_lot_name) {
+  requestParkLotInfo = function(parking_lot_name) {
     var user_location_TEST;
     user_location_TEST = "53.3408119, -6.2461844";
     return $.ajax({
@@ -174,4 +162,11 @@ $(function() {
       error: function(err, res, body) {}
     });
   };
+  $('#mapModal').on('shown.bs.modal', function(e) {
+    return mapResize();
+  });
+  return $(document).ready(function() {
+    initGoogleService();
+    return initMap();
+  });
 });
