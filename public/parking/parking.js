@@ -31,11 +31,10 @@ addMarker = function(lat, lng) {
     position: new google.maps.LatLng(lat, lng),
     title: 'Home Center'
   });
-  markers.push(marker);
-  return showMarkers();
+  return markers.push(marker);
 };
 
-setMapOnAll = function(clear) {
+setMapOnAll = function(map) {
   var i, results;
   i = 0;
   results = [];
@@ -56,7 +55,7 @@ showMarkers = function() {
 
 deleteMarkers = function() {
   clearMarkers();
-  return markers = [];
+  markers = [];
 };
 
 $(function() {
@@ -194,7 +193,9 @@ $(function() {
         data = JSON.parse(body.responseText);
         requestGoogleDir(data.src, data.dst);
         deleteMarkers();
-        return addMarker(data.dst_lat, data.dst_lng);
+        addMarker(data.dst_lat, data.dst_lng);
+        showMarkers();
+        return console.log(markers);
       },
       error: function(err, res, body) {}
     });

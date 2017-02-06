@@ -20,16 +20,15 @@ addMarker = (lat, lng) ->
     position: new google.maps.LatLng(lat, lng)
     title: 'Home Center')
   markers.push marker
-  showMarkers()
 
-setMapOnAll = (clear) ->
+setMapOnAll = (map) ->
   i = 0
   while i < markers.length
     markers[i].setMap map
     i++
 
 clearMarkers = () ->
-  setMapOnAll(null)
+  setMapOnAll null
 
 showMarkers = () ->
   setMapOnAll map
@@ -37,7 +36,7 @@ showMarkers = () ->
 deleteMarkers = () ->
   clearMarkers()
   markers = []
-
+  return
 
 $ ->
   lot_names = []
@@ -133,6 +132,7 @@ $ ->
         requestGoogleDir data.src, data.dst
         deleteMarkers()
         addMarker data.dst_lat, data.dst_lng
+        showMarkers()
       error: (err, res, body) ->
 
   $('#mapModal').on 'shown.bs.modal', (e) ->
