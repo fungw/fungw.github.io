@@ -1,23 +1,33 @@
-var addMarker, clearMarkers, deleteMarkers, directionsService, initGoogleService, lat, lng, map, mapResize, markers, setMapOnAll, showMarkers;
+var addMarker, addUserLocation, clearMarkers, default_user_location, deleteMarkers, directionsDisplay, directionsService, getLocation, initGoogleService, lat, lng, map, mapResize, markers, setMapOnAll, showMarkers, showPosition, user_location, zoom;
 
 map = void 0;
 
 directionsService = void 0;
 
+directionsDisplay = void 0;
+
 lat = 53.347347;
 
 lng = -6.259189;
 
+zoom = 14;
+
 markers = [];
+
+user_location = void 0;
+
+default_user_location = "53.343556, -6.250611";
 
 initGoogleService = function() {
   var mapOptions;
   directionsService = new google.maps.DirectionsService();
+  directionsDisplay = new google.maps.DirectionsRenderer();
   mapOptions = {
     center: new google.maps.LatLng(lat, lng),
-    zoom: 13
+    zoom: zoom
   };
-  return map = new google.maps.Map(document.getElementById('map'), mapOptions);
+  map = new google.maps.Map(document.getElementById('map'), mapOptions);
+  return directionsDisplay.setMap(map);
 };
 
 mapResize = function() {
@@ -29,7 +39,24 @@ addMarker = function(lat, lng) {
   var marker;
   marker = new google.maps.Marker({
     position: new google.maps.LatLng(lat, lng),
-    title: 'Home Center'
+    title: 'Parking Lot',
+    icon: {
+      path: google.maps.SymbolPath.CIRCLE,
+      scale: 5
+    }
+  });
+  return markers.push(marker);
+};
+
+addUserLocation = function(lat, lng) {
+  var marker;
+  marker = new google.maps.Marker({
+    position: new google.maps.LatLng(lat, lng),
+    title: 'User',
+    icon: {
+      path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
+      scale: 2
+    }
   });
   return markers.push(marker);
 };
@@ -56,6 +83,23 @@ showMarkers = function() {
 deleteMarkers = function() {
   clearMarkers();
   markers = [];
+};
+
+getLocation = function() {
+  if (navigator.geolocation) {
+    return navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    return alert("Geolocation is not supported by this browser.");
+  }
+};
+
+showPosition = function(position) {
+  var user_lat, user_lng;
+  user_lat = position.coords.latitude;
+  user_lng = position.coords.longitude;
+  user_location = user_lat + ", " + user_lng;
+  addUserLocation(user_lat, user_lng);
+  return showMarkers();
 };
 
 $(function() {
@@ -173,19 +217,29 @@ $(function() {
       travelMode: 'DRIVING'
     };
     return directionsService.route(request, function(result, status) {
+      var listener;
       if (status === 'OK') {
-        return console.log(result.routes[0].legs[0].duration.text);
+        $("#travel_time").text("Travel Time: " + result.routes[0].legs[0].duration.text);
+        directionsDisplay.setDirections(result);
+        map.fitBounds(result.routes[0].bounds);
+        return listener = google.maps.event.addListener(map, 'idle', function() {
+          if (map.getZoom() > zoom) {
+            map.setZoom(zoom);
+          }
+          google.maps.event.removeListener(listener);
+        });
       }
     });
   };
   requestParkLotInfo = function(parking_lot_name) {
-    var user_location_TEST;
-    user_location_TEST = "53.3408119, -6.2461844";
+    var user_location_str;
+    getLocation();
+    user_location_str = user_location === void 0 ? default_user_location : user_location;
     return $.ajax({
       url: "/requestParkLotInfo",
       type: "GET",
       data: {
-        user_location_TEST: user_location_TEST,
+        user_location_str: user_location_str,
         parking_lot_name: parking_lot_name
       },
       success: function(err, res, body) {
@@ -194,8 +248,7 @@ $(function() {
         requestGoogleDir(data.src, data.dst);
         deleteMarkers();
         addMarker(data.dst_lat, data.dst_lng);
-        showMarkers();
-        return console.log(markers);
+        return showMarkers();
       },
       error: function(err, res, body) {}
     });

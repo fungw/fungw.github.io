@@ -39,6 +39,8 @@ $(window).on 'load', (e) ->
       return
 
     i = 0
+    # Append parking-button  
+    $('<li id="parking-button" class="nav-items"><a href="/parking" class="nav-text">Dublin Parking Lots</a></li>').appendTo '#nav-links'
     while i < images.length
       id = images[i].id
       filename = images[i].filename
@@ -49,8 +51,6 @@ $(window).on 'load', (e) ->
       google_maps = images[i].google_maps
       orientation = images[i].orientation
       type = if orientation is 'portrait' then 'padding-portrait' else 'padding-landscape'
-      console.log orientation
-      console.log type
       $('<div class="row entry_posts" id="'+id+'">'+
           '<div class="col-lg-3">'+
             '<div class="col-lg-12 title-heading sidebar">'+

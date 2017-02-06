@@ -25,7 +25,7 @@ requestParkLotInfo = function(req, cb) {
     }
     lot_parsed = JSON.parse(data);
     req_lot_name = req.parking_lot_name;
-    req_user_location = req.user_location_TEST;
+    req_user_location = req.user_location_str;
     route = {
       src: req_user_location,
       dst_lat: lot_parsed[req_lot_name].lat,

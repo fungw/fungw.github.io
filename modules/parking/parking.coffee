@@ -1,15 +1,21 @@
 map = undefined
 directionsService = undefined
+directionsDisplay = undefined
 lat = 53.347347
 lng = -6.259189
+zoom = 14
 markers = []
+user_location = undefined
+default_user_location = "53.343556, -6.250611"
 
 initGoogleService = ->
   directionsService = new google.maps.DirectionsService()
+  directionsDisplay = new google.maps.DirectionsRenderer();
   mapOptions =  
     center: new (google.maps.LatLng)(lat, lng)
-    zoom: 13
+    zoom: zoom
   map = new (google.maps.Map)(document.getElementById('map'), mapOptions)
+  directionsDisplay.setMap map
 
 mapResize = () ->
   google.maps.event.trigger map, 'resize'
@@ -18,7 +24,21 @@ mapResize = () ->
 addMarker = (lat, lng) ->
   marker = new (google.maps.Marker)(
     position: new google.maps.LatLng(lat, lng)
-    title: 'Home Center')
+    title: 'Parking Lot'
+    icon:
+      path: google.maps.SymbolPath.CIRCLE
+      scale: 5
+  )
+  markers.push marker
+
+addUserLocation = (lat, lng) ->
+  marker = new (google.maps.Marker)(
+    position: new google.maps.LatLng(lat, lng)
+    title: 'User'
+    icon:
+      path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW
+      scale: 2
+  )
   markers.push marker
 
 setMapOnAll = (map) ->
@@ -37,6 +57,19 @@ deleteMarkers = () ->
   clearMarkers()
   markers = []
   return
+
+getLocation = () ->
+  if navigator.geolocation
+    navigator.geolocation.getCurrentPosition showPosition
+  else
+    alert "Geolocation is not supported by this browser."
+
+showPosition = (position) ->
+  user_lat = position.coords.latitude
+  user_lng = position.coords.longitude
+  user_location = user_lat + ", " + user_lng
+  addUserLocation user_lat, user_lng
+  showMarkers()
 
 $ ->
   lot_names = []
@@ -118,15 +151,24 @@ $ ->
     }
     directionsService.route(request, (result, status) ->
       if status == 'OK'
-        console.log result.routes[0].legs[0].duration.text
+        $("#travel_time").text("Travel Time: " + result.routes[0].legs[0].duration.text)
+        directionsDisplay.setDirections result
+        map.fitBounds result.routes[0].bounds
+        listener = google.maps.event.addListener(map, 'idle', ->
+          if map.getZoom() > zoom
+            map.setZoom zoom
+          google.maps.event.removeListener listener
+          return
+        )
     )
 
   requestParkLotInfo = (parking_lot_name) ->
-    user_location_TEST = "53.3408119, -6.2461844"
+    getLocation()
+    user_location_str = if user_location is undefined then default_user_location else user_location
     $.ajax
       url: "/requestParkLotInfo"
       type: "GET"
-      data: { user_location_TEST, parking_lot_name }
+      data: { user_location_str, parking_lot_name }
       success: (err, res, body) ->
         data = JSON.parse body.responseText
         requestGoogleDir data.src, data.dst
