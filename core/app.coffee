@@ -35,6 +35,6 @@ app.get '/fetchParkingInfo', (req, res) ->
   parking.fetchParkingInfo (data) ->
     res.send data
   
-app.get '/requestParkLotInfo', (req, res) ->
+app.get '/requestParkLotInfo?', (req, res) ->
   parking.requestParkLotInfo req.query, (cb) ->
     res.send cb

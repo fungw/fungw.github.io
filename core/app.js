@@ -48,7 +48,7 @@ app.get('/fetchParkingInfo', function(req, res) {
   });
 });
 
-app.get('/requestParkLotInfo', function(req, res) {
+app.get('/requestParkLotInfo?', function(req, res) {
   return parking.requestParkLotInfo(req.query, function(cb) {
     return res.send(cb);
   });
