@@ -7,8 +7,8 @@ app = express()
 PORT = 8080
 app.use express.static('public')
 
-app.get '/favicon2.ico', (req, res) ->
-  res.sendStatus 200
+app.get '/favicon.ico', (req, res) ->
+  res.sendStatus path.join(__dirname + '/../modules/main/favicon.ico')
 
 # Main view routing
 app.get '/', (req, res) ->
