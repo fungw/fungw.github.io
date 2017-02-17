@@ -14,8 +14,8 @@ PORT = 8080;
 
 app.use(express["static"]('public'));
 
-app.get('/favicon2.ico', function(req, res) {
-  return res.sendStatus(200);
+app.get('/favicon.ico', function(req, res) {
+  return res.sendStatus(path.join(__dirname + '/../modules/main/favicon.ico'));
 });
 
 app.get('/', function(req, res) {
