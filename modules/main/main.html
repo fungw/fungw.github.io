@@ -1,63 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-	<!-- CSS -->
+	<!-- Stylesheets -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.8/css/tether.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
 	<link rel="stylesheet" href="./main/main.css">
-	<link href="https://fonts.googleapis.com/css?family=Anton|Sanchez|Open+Sans+Condensed|Amatic+SC:300" rel="stylesheet">
-	<link rel="icon" href="./favicon.ico"/>
-	<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css?family=Sanchez" rel="stylesheet">
 
-	<!-- Javascript -->
+	<!-- JS -->
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.8/js/tether.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
-	<script src="./main/main.js"></script>
-
-	<!-- Libraries -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.8/js/tether.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
+  	<script src="./main/main.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/1.1.4/typed.min.js"></script>
-
-	<meta charset="utf-8"> 
-	<title>WF</title>
 </head>
-
-<body data-spy="scroll" data-target="#scrollSpy" data-offset="50" id="initial-view">
-	<div class="row entry">
-		<div class="col-lg-3 title-heading sidebar" id="initial-sidebar">
-			<div class="col-xs-12 title-date">
-				<span id="personal_date">1995</span>
-			</div>
-			<div class="col-xs-12 title-image">
-				<img src="./images/self_fisheye.png" height="200" width="200" id="personal_image">
-				<div class="col-xs-12 title-nav">
-					<nav class="col-xs-12" id="scrollSpy">
-						<ul class="nav" id="nav-links">
-						</ul>
-					</nav>
-				</div>
-			</div>
+<body>
+	<div class="tint"></div>
+	<div id="midContainer" class="container">
+		<div class="row">
+			<div id="containerName" class="offset-md-2 col-md-8">Hello, I'm Wesley.</div>
+			<div id="containerText" class="offset-md-2 col-md-8"></div>
 		</div>
-		<div class="col-lg-9 entry-content" id="typed_links">
-			<div id="typed" class="col-xs-12 entry-typed">
-				<div class="details" id="personal_name"></div>
-				<div class="details" id="personal_details"></div>
-			</div>
-			<div class="col-xs-12 details" id="external_links">
-				<a href="https://ie.linkedin.com/pub/wesley-fung/90/320/781" class="external_sites" target="_blank">
-					<input class="button" type="image" src="./images/linkedin.jpg"></input>
+	</div>
+	<div id="botContainer" class="container">
+		<div class="row">
+			<div class="offset-md-4 col-md-4 fontExternalSites">
+				<a href="https://ie.linkedin.com/pub/wesley-fung/90/320/781" class="cursorExternalSites" target="_blank">
+					<input class="buttonExternalSites" type="image" src="./images/linkedin.jpg"></input>
 				</a>
-				<a href="https://github.com/fungw/wesleyfung.com" class="external_sites" target="_blank">
-					<input class="button" type="image" src="./images/github.png"></input>
+				<a href="https://github.com/fungw" class="cursorExternalSites" target="_blank">
+					<input class="buttonExternalSites" type="image" src="./images/github.png"></input>
 				</a>
-				<a href="https://www.facebook.com/ManHoo726" class="external_sites" target="_blank">
-					<input class="button" type="image" src="./images/facebook.jpg"></input>
+				<a href="https://www.facebook.com/ManHoo726" class="cursorExternalSites" target="_blank">
+					<input class="buttonExternalSites" type="image" src="./images/facebook.jpg"></input>
 				</a>
 			</div>
 		</div>
 	</div>
-
-	<script src="//cdn.jsdelivr.net/mojs/latest/mo.min.js"></script>
 </body>
-
 </html>
