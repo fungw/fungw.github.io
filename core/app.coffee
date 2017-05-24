@@ -1,14 +1,13 @@
 express = require('express')
 path = require('path')
-sudoku = require('./sudoku.js')
 parking = require('./parking.js')
 
 app = express()
 PORT = 8080
 app.use express.static('public')
 
-app.get '/favicon.ico', (req, res) ->
-  res.sendStatus path.join(__dirname + '/../modules/main/favicon.ico')
+#app.get '/favicon.ico', (req, res) ->
+#  res.sendStatus path.join(__dirname + '/../modules/main/favicon.ico')
 
 # Main view routing
 app.get '/', (req, res) ->
@@ -19,13 +18,6 @@ app.listen PORT, ->
 
 app.get '/mobile', (req, res) ->
   res.sendFile path.join(__dirname + '/../modules/main/mobile.html')
-
-# Sudoku routing
-app.get '/sudoku', (req, res) ->
-  res.sendFile path.join(__dirname + '/../modules/sudoku/sudoku.html')
-
-app.get '/generateSudoku', (req, res) ->
-  console.log sudoku.generateSudoku()
 
 # Dublin Parking Lot routing
 app.get '/parking', (req, res) ->
