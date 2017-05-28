@@ -1,9 +1,11 @@
+'use strict'
+
 express = require('express')
 path = require('path')
 parking = require('./parking.js')
 
 app = express()
-PORT = 8080
+PORT = 8082
 app.use express.static('public')
 
 #app.get '/favicon.ico', (req, res) ->

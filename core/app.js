@@ -1,3 +1,4 @@
+'use strict';
 var PORT, app, express, parking, path;
 
 express = require('express');
@@ -8,7 +9,7 @@ parking = require('./parking.js');
 
 app = express();
 
-PORT = 8080;
+PORT = 8082;
 
 app.use(express["static"]('public'));
 
