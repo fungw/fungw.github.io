@@ -10,4 +10,10 @@ $(document).ready ->
 		startDelay: 1000
 		loop: true
 		showCursor: false
-	return
+		
+	$('#footerText').hover (->
+		$(this).closest('.footer').addClass 'footerHover'
+		$(this).closest('#footerText').addClass 'footerTextHover'
+	), ->
+		$(this).closest('.footer').removeClass 'footerHover'
+		$(this).closest('#footerText').removeClass 'footerTextHover'

@@ -7,4 +7,11 @@ $(document).ready(function() {
     loop: true,
     showCursor: false
   });
+  return $('#footerText').hover((function() {
+    $(this).closest('.footer').addClass('footerHover');
+    return $(this).closest('#footerText').addClass('footerTextHover');
+  }), function() {
+    $(this).closest('.footer').removeClass('footerHover');
+    return $(this).closest('#footerText').removeClass('footerTextHover');
+  });
 });
