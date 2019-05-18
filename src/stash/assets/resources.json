@@ -1,0 +1,21 @@
+{
+  "header": {
+    "owner": "Fung",
+    "introduction": "Web Developer",
+    "basedIn": "based in Dublin",
+    "previously": "Previously at Kx Systems and Groupon"
+  },
+  "project": {
+    "title": "Projects",
+    "portfolio": [{
+      "title": "Coffee Week",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    },{
+      "title": "Notify",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    },{
+      "title": "Dublin Live Parking Lot Chart",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    }]
+  }
+}
