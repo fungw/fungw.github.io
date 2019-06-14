@@ -1,0 +1,93 @@
+$adobe-brand-color: #ff0000
+$blue-bg-color: #0131D2
+$contact-spacing-l: 100px
+$github-brand-color: #333
+$greyed-out: #AAAFB4
+$linkedin-brand-color: #0078B5
+$ios-brand-color-gradient-bottom: #5fc9f8
+$ios-brand-color-gradient-top: #147efb
+$mail-color: #F8C845
+$page-margin: 10px
+$stackoverflow-brand-color-stack: #f48024
+$stackoverflow-brand-color-tray: #bcbbbb
+$strava-brand-color: #fc4c02
+$transition: background-color 1s ease
+
+html
+  background-color: $blue-bg-color
+  display: grid
+  height: 100%
+  grid-template-columns: $page-margin auto $page-margin
+  grid-template-rows: $page-margin auto $page-margin
+  transition: $transition
+
+  body
+    border: 1px solid white
+    grid-column-start: 2
+    grid-row-start: 2
+
+    > div#___gatsby
+      height: 100%
+      display: grid
+      grid-template-rows: auto 50% auto
+
+      > div
+        grid-row-start: 2
+        display: inherit
+
+        .layout-container
+          display: inherit
+          grid-template-rows: 50% 50%
+          grid-template-columns: auto auto auto
+          #fung
+              font-size: 30px
+              font-family: 'Yesteryear', cursive
+              grid-column-start: 2
+              text-decoration: initial
+              text-align: center
+              > h1
+                color: white
+                grid-row-start: 2
+                margin: 0
+
+          .contact-container
+            color: white
+            display: grid
+            grid-column-start: 2
+            grid-template-columns: auto 50px 50px 50px 50px 50px 50px auto
+            height: 10px
+            text-align: center
+            > div:nth-child(1)
+              grid-column-start: 2
+            > div > a
+              color: white
+              font-size: 15px
+
+              > svg.file-pdf-hover
+                background-color: $adobe-brand-color
+
+              > svg.github-hover
+                color: $github-brand-color
+
+              > svg.linkedin-hover
+                color: $linkedin-brand-color
+                
+              > svg.envelope-hover
+                color: $mail-color
+
+              > svg.stack-overflow-hover
+                color: $stackoverflow-brand-color-stack
+
+              > svg.strava-hover
+                color: $strava-brand-color
+              
+@media (min-width: 1024px)
+  html > body > div#___gatsby > div > .layout-container
+    #fung > h1
+      font-size: 125px
+    
+    .contact-container
+      grid-template-columns: auto $contact-spacing-l $contact-spacing-l $contact-spacing-l $contact-spacing-l $contact-spacing-l  $contact-spacing-l auto
+      padding-top: 75px
+      > div > a
+        font-size: 50px
