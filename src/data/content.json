@@ -73,8 +73,8 @@
       "description": "Study Exchange"
     }]
   },
-  "contact": [
-    {
+  "hero": {
+    "contact": {
       "cv": {
         "icon": {
           "brand": false,
@@ -117,6 +117,9 @@
         },
         "link": "https://www.strava.com/athletes/31309829"
       }
+    },
+    "scrollDown": {
+      "icon": "long-arrow-alt-down"
     }
-  ]
+  }
 }

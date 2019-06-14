@@ -1,16 +1,16 @@
 import React from "react"
 import Layout from "../components/layout"
-import Contact from "../sections/contact"
+import Hero from "../sections/hero"
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faEnvelope, faFilePdf } from '@fortawesome/free-solid-svg-icons'
-library.add(fab, faEnvelope, faFilePdf)
+import { faEnvelope, faFilePdf, faLongArrowAltDown } from '@fortawesome/free-solid-svg-icons'
+library.add(fab, faEnvelope, faFilePdf, faLongArrowAltDown)
 
 export default () => {
   return (
     <Layout>
-      <Contact></Contact>
+      <Hero></Hero>
     </Layout>
   )
 }

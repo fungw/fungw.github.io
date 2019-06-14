@@ -1,6 +1,6 @@
 $adobe-brand-color: #ff0000
 $blue-bg-color: #0131D2
-$contact-spacing-l: 100px
+$contact-size-s: 25px
 $github-brand-color: #333
 $greyed-out: #AAAFB4
 $linkedin-brand-color: #0078B5
@@ -11,85 +11,85 @@ $page-margin: 10px
 $stackoverflow-brand-color-stack: #f48024
 $stackoverflow-brand-color-tray: #bcbbbb
 $strava-brand-color: #fc4c02
+$surname-size-s: 80px
 $transition: background-color 1s ease
 
 html
   background-color: $blue-bg-color
   display: grid
-  height: 100%
   grid-template-columns: $page-margin auto $page-margin
-  grid-template-rows: $page-margin auto $page-margin
+  grid-template-rows: 10px 100%
   transition: $transition
 
   body
-    border: 1px solid white
     grid-column-start: 2
     grid-row-start: 2
 
-    > div#___gatsby
-      height: 100%
-      display: grid
-      grid-template-rows: auto 50% auto
-
-      > div
+    .layout-container
+      display: inherit
+      grid-template-rows: 50% 50%
+      grid-template-columns: auto auto auto
+      #surname-container h1
+        color: white
+        cursor: default
+        font-size: $surname-size-s
+        font-family: 'Yesteryear', cursive
         grid-row-start: 2
-        display: inherit
+        margin: 0
+        text-decoration: initial
+        text-align: center
 
-        .layout-container
+      #hero-container
+        border: 1px solid white
+        color: white
+        display: grid
+        grid-column-start: 2
+        grid-template-columns: repeat(3, auto)
+        grid-template-rows: repeat(3, auto) 75px
+        height: 96vh
+        text-align: center
+
+        > #surname-container
+          grid-column-start: 2
+          grid-row-start: 2
+
+        > #contact-container
           display: inherit
-          grid-template-rows: 50% 50%
-          grid-template-columns: auto auto auto
-          > div
-            grid-column-start: 2
-            margin: auto
-            > #fung
-                font-size: 30px
-                font-family: 'Yesteryear', cursive
-                text-decoration: initial
-                text-align: center
-                > h1
-                  color: white
-                  grid-row-start: 2
-                  margin: 0
-
-          .contact-container
+          grid-column-start: 2
+          grid-row-start: 3
+          grid-template-columns: repeat(6, auto)
+          div > a
             color: white
-            display: grid
-            grid-column-start: 2
-            grid-template-columns: repeat(6, auto)
-            grid-template-rows: repeat(3, auto)
-            height: 100%
-            text-align: center
-            > div:nth-child(1)
-              grid-column-start: 1
-            > div
-              grid-row-start: 2
-              > a
-                color: white
-                font-size: 15px
+            font-size: $contact-size-s
 
-                > svg.file-pdf-hover
-                  background-color: $adobe-brand-color
+            > svg.file-pdf-hover
+              background-color: $adobe-brand-color
 
-                > svg.github-hover
-                  color: $github-brand-color
+            > svg.github-hover
+              color: $github-brand-color
 
-                > svg.linkedin-hover
-                  color: $linkedin-brand-color
-                  
-                > svg.envelope-hover
-                  color: $mail-color
+            > svg.linkedin-hover
+              color: $linkedin-brand-color
+              
+            > svg.envelope-hover
+              color: $mail-color
 
-                > svg.stack-overflow-hover
-                  color: $stackoverflow-brand-color-stack
+            > svg.stack-overflow-hover
+              color: $stackoverflow-brand-color-stack
 
-                > svg.strava-hover
-                  color: $strava-brand-color
+            > svg.strava-hover
+              color: $strava-brand-color
+
+        > #scrollDown-container
+          grid-column-start: 2
+          grid-row-start: 4
+          > a
+            font-size: $contact-size-s
               
 @media (min-width: 1024px)
   html > body > div#___gatsby > div > .layout-container
-    #fung > h1
+    #surname-container h1
       font-size: 125px
     
-    .contact-container > div > a
+    #contact-container > div > a
       font-size: 50px
