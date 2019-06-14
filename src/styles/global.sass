@@ -56,40 +56,40 @@ html
             color: white
             display: grid
             grid-column-start: 2
-            grid-template-columns: auto 50px 50px 50px 50px 50px 50px auto
-            height: 10px
+            grid-template-columns: repeat(6, auto)
+            grid-template-rows: repeat(3, auto)
+            height: 100%
             text-align: center
             > div:nth-child(1)
-              grid-column-start: 2
-            > div > a
-              color: white
-              font-size: 15px
+              grid-column-start: 1
+            > div
+              grid-row-start: 2
+              > a
+                color: white
+                font-size: 15px
 
-              > svg.file-pdf-hover
-                background-color: $adobe-brand-color
+                > svg.file-pdf-hover
+                  background-color: $adobe-brand-color
 
-              > svg.github-hover
-                color: $github-brand-color
+                > svg.github-hover
+                  color: $github-brand-color
 
-              > svg.linkedin-hover
-                color: $linkedin-brand-color
-                
-              > svg.envelope-hover
-                color: $mail-color
+                > svg.linkedin-hover
+                  color: $linkedin-brand-color
+                  
+                > svg.envelope-hover
+                  color: $mail-color
 
-              > svg.stack-overflow-hover
-                color: $stackoverflow-brand-color-stack
+                > svg.stack-overflow-hover
+                  color: $stackoverflow-brand-color-stack
 
-              > svg.strava-hover
-                color: $strava-brand-color
+                > svg.strava-hover
+                  color: $strava-brand-color
               
 @media (min-width: 1024px)
   html > body > div#___gatsby > div > .layout-container
     #fung > h1
       font-size: 125px
     
-    .contact-container
-      grid-template-columns: auto $contact-spacing-l $contact-spacing-l $contact-spacing-l $contact-spacing-l $contact-spacing-l  $contact-spacing-l auto
-      padding-top: 75px
-      > div > a
-        font-size: 50px
+    .contact-container > div > a
+      font-size: 50px
