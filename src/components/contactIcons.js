@@ -8,7 +8,7 @@ export default class ContactIcons extends Component {
   }
 
   hoverOn(e) {
-    const element = this.getSvg(e);
+    const element = this.getSvg(e)
     element.classList.add(element.getAttribute("data-icon") + '-hover');
   }
 
