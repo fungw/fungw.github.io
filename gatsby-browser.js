@@ -1,1 +1,2 @@
-import "./src/styles/global.sass"
+import "./src/styles/hero.sass"
+import "./src/styles/project.sass"

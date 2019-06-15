@@ -1,25 +1,22 @@
+// colors
 $adobe-brand-color: #ff0000
 $blue-bg-color: #0131D2
-$contact-size-s: 25px
 $github-brand-color: #333
 $greyed-out: #AAAFB4
 $linkedin-brand-color: #0078B5
-$ios-brand-color-gradient-bottom: #5fc9f8
-$ios-brand-color-gradient-top: #147efb
 $mail-color: #F8C845
-$page-margin: 10px
 $stackoverflow-brand-color-stack: #f48024
-$stackoverflow-brand-color-tray: #bcbbbb
 $strava-brand-color: #fc4c02
+
+$contact-size-s: 25px
+$page-margin: 10px
 $surname-size-s: 80px
-$transition: background-color 1s ease
 
 html
   background-color: $blue-bg-color
   display: grid
   grid-template-columns: $page-margin auto $page-margin
   grid-template-rows: 10px 100%
-  transition: $transition
 
   body
     grid-column-start: 2
@@ -81,10 +78,10 @@ html
               color: $strava-brand-color
 
         > #scrollDown-container
+          color: white
+          font-size: $contact-size-s
           grid-column-start: 2
           grid-row-start: 4
-          > a
-            font-size: $contact-size-s
               
 @media (min-width: 1024px)
   html > body > div#___gatsby > div > .layout-container
