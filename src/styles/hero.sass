@@ -1,92 +1,117 @@
-// colors
-$adobe-brand-color: #ff0000
-$blue-bg-color: #0131D2
-$github-brand-color: #333
-$greyed-out: #AAAFB4
-$linkedin-brand-color: #0078B5
-$mail-color: #F8C845
-$stackoverflow-brand-color-stack: #f48024
-$strava-brand-color: #fc4c02
+@import './colours.sass'
 
 $contact-size-s: 25px
 $page-margin: 10px
 $surname-size-s: 80px
 
-html
-  background-color: $blue-bg-color
-  display: grid
-  grid-template-columns: $page-margin auto $page-margin
-  grid-template-rows: 10px 100%
+.section
+  height: 100vh
 
-  body
+#hero-container
+  display: grid
+  grid-template-columns: 20% auto 20%
+  grid-template-rows: repeat(2, 50%)
+
+  > #surname-container
+    display: grid
+    grid-column-start: 2
+    grid-row-start: 1
+    grid-template-rows: repeat(2, 50%)
+
+    > h1
+      color: white
+      cursor: default
+      font-size: $surname-size-s
+      font-family: 'Yesteryear', cursive
+      grid-row-start: 2
+      margin: 0
+      text-decoration: initial
+      text-align: center
+
+  > #contact-container
+    display: flex
+    flex-wrap: wrap
     grid-column-start: 2
     grid-row-start: 2
-
-    .layout-container
-      display: inherit
-      grid-template-rows: 50% 50%
-      grid-template-columns: auto auto auto
-      #surname-container h1
+    height: 175px
+    > div
+      flex-grow: 1
+      text-align: center
+      width: 45px
+      > a
         color: white
-        cursor: default
-        font-size: $surname-size-s
-        font-family: 'Yesteryear', cursive
-        grid-row-start: 2
-        margin: 0
-        text-decoration: initial
-        text-align: center
+        font-size: $contact-size-s
 
-      #hero-container
-        border: 1px solid white
-        color: white
-        display: grid
-        grid-column-start: 2
-        grid-template-columns: repeat(3, auto)
-        grid-template-rows: repeat(3, auto) 75px
-        height: 96vh
-        text-align: center
+        > svg#file-pdf:hover
+          background-color: $adobe-brand-color
 
-        > #surname-container
-          grid-column-start: 2
-          grid-row-start: 2
+        > svg#github:hover
+          color: $github-brand-color
 
-        > #contact-container
-          display: inherit
-          grid-column-start: 2
-          grid-row-start: 3
-          grid-template-columns: repeat(6, auto)
-          div > a
-            color: white
-            font-size: $contact-size-s
+        > svg#linkedin:hover
+          color: $linkedin-brand-color
+          
+        > svg#envelope:hover
+          color: $mail-color
 
-            > svg.file-pdf-hover
-              background-color: $adobe-brand-color
+        > svg#spotify:hover
+          color: $spotify-brand-color
 
-            > svg.github-hover
-              color: $github-brand-color
+        > svg#stack-overflow:hover
+          color: $stackoverflow-brand-color-stack
 
-            > svg.linkedin-hover
-              color: $linkedin-brand-color
+        > svg#strava:hover
+          color: $strava-brand-color
+    
+    > div:nth-last-child(-n+3)
+      width: 30px
+
+    > div:nth-last-child(3)
+      margin-left: 25px
+
+    > div:nth-last-child(1)
+      margin-right: 25px
+
+  > #scrollDown-container
+    color: white
+    font-size: $contact-size-s
+    grid-column-start: 2
+    grid-row-start: 4
+
+    > svg
+      cursor: pointer
               
-            > svg.envelope-hover
-              color: $mail-color
-
-            > svg.stack-overflow-hover
-              color: $stackoverflow-brand-color-stack
-
-            > svg.strava-hover
-              color: $strava-brand-color
-
-        > #scrollDown-container
-          color: white
-          font-size: $contact-size-s
-          grid-column-start: 2
-          grid-row-start: 4
-              
-@media (min-width: 1024px)
-  html > body > div#___gatsby > div > .layout-container
+@media only screen and (min-device-width : 768px)
+  #hero-container
     #surname-container h1
       font-size: 125px
     
-    #contact-container > div > a
-      font-size: 50px
+    #contact-container
+      display: grid
+      height: initial
+      grid-template-columns: repeat(7, auto)
+      grid-template-rows: repeat(4, 25%)
+      > div 
+        grid-row-start: 2
+        width: initial
+        > a
+          font-size: 40px
+
+      > div:nth-last-child(-n+3)
+        width: initial
+
+      > div:nth-last-child(3)
+        margin-left: initial
+
+      > div:nth-last-child(1)
+        margin-right: initial
+
+@media only screen and (min-device-width : 1024px)
+  #hero-container
+    #surname-container h1
+      font-size: 150px
+    
+    #contact-container
+      > div 
+        > a
+          font-size: 50px

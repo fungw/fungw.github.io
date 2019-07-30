@@ -41,15 +41,12 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `src`,
-        path: `${__dirname}/src/`,
+        name: `data`,
+        path: `${__dirname}/src/data/`
       },
     },
     {
-      resolve: `gatsby-transformer-json`,
-      options: {
-        typeName: `Json`,
-      },
+      resolve: `gatsby-transformer-json`
     },
     `gatsby-transformer-sharp`
     // this (optional) plugin enables Progressive Web App + Offline functionality

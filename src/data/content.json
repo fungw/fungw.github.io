@@ -74,50 +74,6 @@
     }]
   },
   "hero": {
-    "contact": {
-      "cv": {
-        "icon": {
-          "brand": false,
-          "name": "file-pdf"
-        },
-        "link": "/resume.pdf"
-      },
-      "github": {
-        "icon": {
-          "brand": true,
-          "name": "github"
-        },
-        "link": "https://github.com/fungw"
-      },
-      "linkedIn": {
-        "icon": {
-          "brand": true,
-          "name": "linkedin"
-        },
-        "link": "https://www.linkedin.com/in/78132090/"
-      },
-      "mail": {
-        "icon": {
-          "brand": false,
-          "name": "envelope"
-        },
-        "link": "mailto:fungw@tcd.ie"
-      },
-      "stackOverflow": {
-        "icon": {
-          "brand": true,
-          "name": "stack-overflow"
-        },
-        "link": "https://stackoverflow.com/users/6336893/fung"
-      },
-      "strava": {
-        "icon": {
-          "brand": true,
-          "name": "strava"
-        },
-        "link": "https://www.strava.com/athletes/31309829"
-      }
-    },
     "scrollDown": {
       "icon": "long-arrow-alt-down"
     }
