@@ -1,11 +1,29 @@
 import React from "react"
+import { StaticQuery, graphql } from 'gatsby'
 
-export default class Surname extends React.Component {
-  render() {
-    return (
+const Surname = () => (
+  <StaticQuery
+    query={graphql`
+      query SurnameQuery {
+        allHeaderJson {
+          edges {
+            node {
+              surname
+            }
+          }
+        }
+      }
+    `}
+    render={data => (
       <div id="surname-container">
-        <h1>{this.props.title}</h1>
+        <h1>{getSurname(data)}</h1>
       </div>
-    )
-  }
+    )}
+  />
+);
+
+function getSurname(data) {
+  return data.allHeaderJson.edges[0].node.surname
 }
+
+export default Surname;

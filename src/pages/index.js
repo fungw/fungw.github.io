@@ -1,6 +1,7 @@
 import React from "react"
+import Footer from "../components/footer"
+import Header from "../components/header"
 import Layout from "../components/layout"
-import Hero from "../sections/hero"
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
@@ -10,7 +11,8 @@ library.add(fab, faEnvelope, faFilePdf, faLongArrowAltDown)
 export default () => {
   return (
     <Layout>
-      <Hero></Hero>
+      <Header></Header>
+      <Footer></Footer>
     </Layout>
   )
 }

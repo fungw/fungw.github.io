@@ -2,8 +2,8 @@ import React from "react"
 
 export default ({ children }) => {
   return (
-    <main>
+    <div>
       {children}
-    </main>
+    </div>
   )
 }

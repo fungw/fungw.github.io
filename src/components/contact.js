@@ -2,7 +2,7 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { StaticQuery, graphql } from 'gatsby'
 
-const Contacts = () => (
+const Contact = () => (
   <StaticQuery
     query={graphql`
       query ContactsQuery {
@@ -44,4 +44,4 @@ function getContactDetails(data) {
   return contactDetailsArray;
 }
 
-export default Contacts;
+export default Contact;
