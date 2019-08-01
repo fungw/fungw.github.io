@@ -1,7 +1,8 @@
 import React from "react"
-import Footer from "../components/footer"
-import Header from "../components/header"
+import Footer from "../sections/footer"
+import Header from "../sections/header"
 import Layout from "../components/layout"
+import Main from "../sections/main"
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
@@ -12,6 +13,7 @@ export default () => {
   return (
     <Layout>
       <Header></Header>
+      <Main></Main>
       <Footer></Footer>
     </Layout>
   )
