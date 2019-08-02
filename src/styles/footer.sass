@@ -1,0 +1,68 @@
+@import './_colours.sass'
+  
+footer
+  border-top: 1px solid white
+  bottom: 0
+  position: fixed
+  width: 100%
+
+  > #contact-container
+    display: flex
+    height: 100px
+
+    > div
+      flex-grow: 1
+      position: relative
+      text-align: center
+      top: 35%
+
+      > a
+        color: white
+
+        > svg
+          height: 30px
+          width: 30px
+
+        > svg#file-pdf:hover
+          color: $adobe-brand-color
+
+        > svg#github:hover
+          color: $github-brand-color
+
+        > svg#linkedin:hover
+          color: $linkedin-brand-color
+
+        > svg#envelope:hover
+          color: $mail-color
+
+        > svg#spotify:hover
+          color: $spotify-brand-color
+
+        > svg#stack-overflow:hover
+          color: $stackoverflow-brand-color
+
+        > svg#strava:hover
+          color: $strava-brand-color
+
+@media only screen and (min-width: 768px)
+  footer
+    border-top: initial
+    border-left: 1px solid white
+    height: 100vh
+    right: 0
+    width: 100px
+
+    > #contact-container
+      flex-direction: column
+      height: 100%
+
+      > div
+        display: grid
+        top: initial
+
+        > a
+          align-self: center
+
+          > svg
+            height: 42.5px
+            width: 42.5px

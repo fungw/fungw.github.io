@@ -1,0 +1,41 @@
+#hero-container
+  display: grid
+  grid-template-rows: 50vh auto
+  
+  #headshot-container
+    align-self: end
+    justify-self: center
+    height: 100px
+    width: 100px
+
+  > h1
+    color: white
+    font-family: Roboto, sans-serif
+    font-size: 22px
+    font-weight: 100
+    height: 100%
+    margin-top: 30px
+    text-align: center
+
+@media only screen and (max-width: 320px)
+  #hero-container > h1
+    font-size: 18px
+
+@media only screen and (min-width: 768px)
+  #hero-container
+    > #headshot-container
+      height: 125px
+      width: 125px
+    
+    > h1
+      font-size: 28px
+      margin-top: 50px
+
+@media only screen and (min-width: 1200px)
+  #hero-container
+    > #headshot-container
+      height: 150px
+      width: 150px
+
+    > h1
+      font-size: 32px

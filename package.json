@@ -1,24 +1,57 @@
 {
-  "name": "fmh",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
+  "name": "wesleyfung.com",
+  "private": true,
+  "description": "Source code for personal website wesleyfung.com",
+  "version": "2.0",
+  "author": "Wesley Fung <fmanhoo@gmail.com",
   "dependencies": {
-    "express": "^4.14.0",
-    "greenlock-express": "^2.0.11",
-    "mustache": "^2.3.0",
-    "path": "^0.12.7"
+    "@fortawesome/fontawesome-svg-core": "^1.2.19",
+    "@fortawesome/free-brands-svg-icons": "^5.9.0",
+    "@fortawesome/free-solid-svg-icons": "^5.9.0",
+    "@fortawesome/react-fontawesome": "^0.1.4",
+    "gatsby": "^2.4.3",
+    "gatsby-image": "^2.2.8",
+    "gatsby-plugin-lodash": "^3.0.5",
+    "gatsby-plugin-manifest": "^2.1.1",
+    "gatsby-plugin-offline": "^2.1.0",
+    "gatsby-plugin-prefetch-google-fonts": "^1.4.2",
+    "gatsby-plugin-react-helmet": "^3.0.12",
+    "gatsby-plugin-react-svg": "^2.1.1",
+    "gatsby-plugin-sass": "^2.0.11",
+    "gatsby-plugin-sharp": "^2.2.9",
+    "gatsby-source-filesystem": "^2.1.8",
+    "gatsby-transformer-json": "^2.1.11",
+    "gatsby-transformer-sharp": "^2.2.5",
+    "lodash": "^4.17.11",
+    "node-sass": "^4.12.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-accessible-accordion": "^3.0.0",
+    "react-dom": "^16.8.6",
+    "react-helmet": "^5.2.1",
+    "scroll-to-element": "^2.0.3",
+    "sharp": "^0.23.0"
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-coffee": "^2.3.4",
-    "gulp-stylus": "^2.6.0",
-    "sqlite3": "^3.1.8",
-    "underscore": "^1.8.3"
+    "prettier": "^1.17.0"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write src/**/*.{js,jsx}",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fungw/wesleyfung.com"
+  },
+  "bugs": {
+    "url": "https://github.com/fungw/wesleyfung.com/issues"
   }
 }
