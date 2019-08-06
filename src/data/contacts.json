@@ -1,0 +1,51 @@
+[
+  {
+    "icon": {
+      "brand": false,
+      "name": "file-pdf"
+    },
+    "link": "/resume.pdf"
+  },
+  {
+    "icon": {
+      "brand": true,
+      "name": "github"
+    },
+    "link": "https://github.com/fungw"
+  },
+  {
+    "icon": {
+      "brand": true,
+      "name": "linkedin"
+    },
+    "link": "https://www.linkedin.com/in/78132090/"
+  },
+  {
+    "icon": {
+      "brand": false,
+      "name": "envelope"
+    },
+    "link": "mailto:fungw@tcd.ie"
+  },
+  {
+    "icon": {
+      "brand": true,
+      "name": "spotify"
+    },
+    "link": "https://open.spotify.com/user/fungmanhoo?si=cc-oAT_DSAyDvDFwTmxpxA"
+  },
+  {
+    "icon": {
+      "brand": true,
+      "name": "stack-overflow"
+    },
+    "link": "https://stackoverflow.com/users/6336893/fung"
+  },
+  {
+    "icon": {
+      "brand": true,
+      "name": "strava"
+    },
+    "link": "https://www.strava.com/athletes/31309829"
+  }
+]
