@@ -11,12 +11,8 @@ jobs:
     steps:
     - name: Checkout master
       uses: actions/checkout@master
-      
-    - name: Github Action for Gatsby CLI
-      uses: jzweifel/gatsby-cli-github-action@v1.0.0
         
-    - name: GitHub Action for DigitalOcean - doctl
-      env:
-        DIGITALOCEAN_ACCESS_TOKEN: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-      uses: digitalocean/action-doctl@v1.4.1
-      
+    - name: Gatsby Publish
+      uses: enriikke/gatsby-gh-pages-action@1.0.1 
+      with:
+          access-token: ${{ secrets.ACCESS_TOKEN }}
