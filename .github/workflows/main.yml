@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Checkout master
+      uses: actions/checkout@master
+
+    - name: Update SHA
+      run: echo $GITHUB_SHA > $GITHUB_WORKSPACE/site/_meta
+      
+    - name: Github Action for Gatsby CLI
+      uses: jzweifel/gatsby-cli-github-action@v1.0.0
+        
+    - name: GitHub Action for DigitalOcean - doctl
+      uses: digitalocean/action-doctl@v1.4.1
+      
