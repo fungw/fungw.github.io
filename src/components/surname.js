@@ -8,7 +8,6 @@ const Surname = () => (
         allHeaderJson {
           edges {
             node {
-              title
               surname
             }
           }
