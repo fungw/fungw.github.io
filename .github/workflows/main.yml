@@ -11,9 +11,6 @@ jobs:
     steps:
     - name: Checkout master
       uses: actions/checkout@master
-
-    - name: Update SHA
-      run: echo $GITHUB_SHA > $GITHUB_WORKSPACE/site/_meta
       
     - name: Github Action for Gatsby CLI
       uses: jzweifel/gatsby-cli-github-action@v1.0.0
