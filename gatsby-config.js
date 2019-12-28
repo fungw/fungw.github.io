@@ -15,8 +15,20 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/favicon.png`
-      },
+        icon: `./static/favicons/favicon-32x32.png`,
+        icons: [
+          {
+            "src":"./static/favicons/android-chrome-192x192.png",
+            "sizes":"192x192",
+            "type":"image/png"
+          },
+          {
+            "src":"./static/favicons/android-chrome-512x512.png",
+            "sizes":"512x512",
+            "type":"image/png"
+          }
+        ]
+      }
     },
     {
       resolve: `gatsby-plugin-prefetch-google-fonts`,
