@@ -30,7 +30,8 @@ const Contact = () => (
 function getContactDetails(data) {
   const contactDetailsArray = [];
   let icon, link;
-  data.allContactsJson.edges.forEach(item => {
+  const socialLinks = data.allContactsJson.edges.filter(value => value.node.display !== false);
+  socialLinks.forEach(item => {
     icon = item.node.icon;
     link = item.node.link;
     contactDetailsArray.push(
