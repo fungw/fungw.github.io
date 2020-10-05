@@ -14,6 +14,7 @@ const Contact = () => (
                 name
               }
               link
+              display
             }
           }
         }

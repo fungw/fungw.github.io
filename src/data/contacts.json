@@ -32,14 +32,16 @@
       "brand": true,
       "name": "spotify"
     },
-    "link": "https://open.spotify.com/user/fungmanhoo?si=cc-oAT_DSAyDvDFwTmxpxA"
+    "link": "https://open.spotify.com/user/fungmanhoo?si=cc-oAT_DSAyDvDFwTmxpxA",
+    "display": false
   },
   {
     "icon": {
       "brand": true,
       "name": "stack-overflow"
     },
-    "link": "https://stackoverflow.com/users/6336893/fung"
+    "link": "https://stackoverflow.com/users/6336893/fung",
+    "display": false
   },
   {
     "icon": {
